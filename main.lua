@@ -1,6 +1,6 @@
 local w, h -- Variables to store the screen width and height
 
---local ballX, ballY -- Variables to store the position of the ball in the screen (Uncomment at the start of TODO 6)
+local ballX, ballY -- Variables to store the position of the ball in the screen (Uncomment at the start of TODO 6)
 --local ballSpeed -- Variable to store the ball speed (Uncomment at the start of TODO 8)
 --local playerX, playerY, cpuX, cpuY -- Variables to store the position of the player and cpu paddle (Uncomment at the start of TODO 10)
 --local paddleSpeed -- Variable to store the paddle speed (Uncomment at the start of TODO 12)
@@ -11,6 +11,7 @@ function love.load(arg)
   if arg[#arg] == "-debug" then require("mobdebug").start() end -- Enable the debugging with ZeroBrane Studio
   
   w, h = love.graphics.getDimensions() -- Get the screen width and height
+  ballX, ballY = w/2, h/2
   
   -- TODO 5: Load the font to use in the game and set it
   font = love.graphics.newFont( "pong.ttf" )
@@ -57,11 +58,12 @@ function love.draw()
   
   -- TODO 2: Draw the ball at the center of the field
   love.graphics.circle( "fill", w/2, h/2, 10 )
+  
   -- TODO 3: Draw the player and cpu paddles
   --PLAYER BALL
-  love.graphics.setColor(1,0 , 0)
-  love.graphics.circle("fill", w/2-5, h/2-5 ,20)
-  love.graphics.setColor(1, 1 ,1)
+  --love.graphics.setColor(1,0 , 0)
+  --love.graphics.circle("fill", ballX, ballY ,20, 5)
+  --love.graphics.setColor(1, 1 ,1)
   
   --LEFT PLAYER PADDLE
   love.graphics.rectangle("fill", 20, h/2-50,10, 100)
