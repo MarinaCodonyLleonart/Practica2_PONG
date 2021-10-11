@@ -52,6 +52,8 @@ end
 
 function love.draw()
   -- TODO 1: Draw the center of the field
+  --love.graphics.rectangle("fill", 800/2-1, 0,5, 600)
+  love.graphics.line(w/2, 0, w/2,h)
   
   -- TODO 2: Draw the ball at the center of the field
   
