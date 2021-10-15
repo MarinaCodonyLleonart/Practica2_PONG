@@ -3,7 +3,7 @@ local w, h -- Variables to store the screen width and height
 local ballX, ballY -- Variables to store the position of the ball in the screen (Uncomment at the start of TODO 6)
 local ballSpeed -- Variable to store the ball speed (Uncomment at the start of TODO 8)
 local playerX, playerY, cpuX, cpuY -- Variables to store the position of the player and cpu paddle (Uncomment at the start of TODO 10)
---local paddleSpeed -- Variable to store the paddle speed (Uncomment at the start of TODO 12)
+local paddleSpeed -- Variable to store the paddle speed (Uncomment at the start of TODO 12)
 --local ballAngle -- Variable to estore the ball movement angle (Uncomment at the start of TODO 16)
 --local playerPoints, cpuPoints -- Variable to store the player and cpu points (Uncomment at the start of TODO 21)
 local playerPoints="0"
@@ -17,7 +17,7 @@ function love.load(arg)
   ballX, ballY = w/2, h/2
   
   -- TODO 5: Load the font to use in the game and set it
-  font = love.graphics.newFont( "pong.ttf", fontSize, "normal", love.graphics.getDPIScale(0) )
+  font = love.graphics.newFont( "pong.ttf", fontSize, "normal",     love.graphics.getDPIScale(0) )
   
   ---ELIMINAR DESPRES--
 --local playerTextWidth = font:getWidth(playerPoints)
@@ -35,7 +35,8 @@ function love.load(arg)
   playerX, playerY = 20, h/2-50
   cpuX, cpuY =  w-30, h/2-50
   
-  -- TODO 12: Initialize the paddle speed
+  --TODO 12: Initialize the paddle speed
+  paddleSpeed = 100
   
   -- TODO 16: Initialize the ball angle
   
@@ -50,6 +51,7 @@ function love.update(dt)
   -- TODO 17: Comment all the code of the TODO 9 and make the ball move using the ballAngle variable
   
   -- TODO 13: Move the player paddle getting the up and down arrows keys of the keyboard using the variable paddleSpeed
+  Keyboard__playerPaddle(dt)
   
   -- TODO 14: Detect the ball collision with the player paddle and make it bounce
   
@@ -81,10 +83,10 @@ function love.draw()
   --love.graphics.setColor(1, 1 ,1)
   
   --LEFT PLAYER PADDLE
-  love.graphics.rectangle("fill", 20, h/2-50,10, 100)
+  love.graphics.rectangle("fill", playerX, playerY,10, 100)
   
   --RIGHT PLAYER PADDLE
-  love.graphics.rectangle("fill", w-30, h/2-50,10, 100)
+  love.graphics.rectangle("fill", cpuX, cpuY,10, 100)
   
   
   
@@ -98,4 +100,12 @@ function love.draw()
   -- TODO 11: Comment all the code of the TODO 3 and use the playerX, playerY, cpuX and cpuY variables to draw the player and cpu paddles
   
   -- TODO 22: Comment all the code of the TODO 4 and use the playerPoints and cpuPOints variables to draw the points
+end
+
+function Keyboard__playerPaddle(dt)
+  if love.keyboard.isDown("up") then
+    playerY = playerY - paddleSpeed*dt
+  elseif love.keyboard.isDown("down") then
+    playerY = playerY + paddleSpeed*dt
+  end
 end
