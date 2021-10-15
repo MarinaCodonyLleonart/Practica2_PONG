@@ -6,6 +6,9 @@ local w, h -- Variables to store the screen width and height
 --local paddleSpeed -- Variable to store the paddle speed (Uncomment at the start of TODO 12)
 --local ballAngle -- Variable to estore the ball movement angle (Uncomment at the start of TODO 16)
 --local playerPoints, cpuPoints -- Variable to store the player and cpu points (Uncomment at the start of TODO 21)
+local playerPoints="0"
+local cpuPoints="0"
+local fontSize =80;
 
 function love.load(arg)
   if arg[#arg] == "-debug" then require("mobdebug").start() end -- Enable the debugging with ZeroBrane Studio
@@ -13,8 +16,16 @@ function love.load(arg)
   w, h = love.graphics.getDimensions() -- Get the screen width and height
   
   -- TODO 5: Load the font to use in the game and set it
-  font = love.graphics.newFont( "pong.ttf" )
-  -- TODO 6: Initialize the position of the ball at the center of the screen
+  font = love.graphics.newFont( "pong.ttf", fontSize, "normal", love.graphics.getDPIScale(0) )
+  
+  ---ELIMINAR DESPRES--
+--local playerTextWidth = font:getWidth(playerPoints)
+--local playerTextHeight = font:getHeight(playerPoints)
+--local cpuTextWidth  = font:getWidth(cpuPoints)
+--local cpuTextHeight = font:getHeight(cpuPoints)
+
+
+-- TODO 6: Initialize the position of the ball at the center of the screen
   
   -- TODO 8: Initialize the ball speed for going to the left
   
@@ -72,7 +83,10 @@ function love.draw()
   
   
   -- TODO 4: Draw the player and cpu points
-  love.graphics.print( "0",font, w/4, h/4, 0, 20, 20, 0, 0, 0, 0 )
+ 
+  love.graphics.print(playerPoints, font, w/4-20, h/4-110, 0, 1,1, 0, 0, 0, 0 )
+  love.graphics.print(cpuPoints, font, w/4*3-20, h/4-110, 0, 1, 1, 0, 0, 0, 0 )
+
   -- TODO 7: Comment all the code of the TODO 2 and use the ballX and ballY variables to draw the ball
   
   -- TODO 11: Comment all the code of the TODO 3 and use the playerX, playerY, cpuX and cpuY variables to draw the player and cpu paddles
