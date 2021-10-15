@@ -50,7 +50,7 @@ function love.load(arg)
   ballAngle = math.pi/6
   
   -- TODO 18: Comment all the code of the TODO 8 and initialize the ball speed without sign
-    ballSpeed = 100
+  ballSpeed = 100
   
   -- TODO 21: Initialize the player and cpu points variables
 end
@@ -62,16 +62,18 @@ function love.update(dt)
   -- TODO 17: Comment all the code of the TODO 9 and make the ball move using the ballAngle variable
   
   -- TODO 13: Move the player paddle getting the up and down arrows keys of the keyboard using the variable paddleSpeed
-  Keyboard__playerPaddle(dt)
+  Keyboard__PlayerPaddle(dt)
+  Keyboard__CpuPaddle(dt)
   
   -- TODO 14: Detect the ball collision with the player paddle and make it bounce
-  BallCollisions()
+  --BallCollisions()
   
   -- TODO 15: Detect the ball collision with the cpu paddle and make it bounce
   
   -- TODO 25: Add the needed code at TODO 19 to make the ball quicker at paddle collision
-  -- TODO 19: Comment all the code of the TODO 14 and TODO 15 and make it bounce using the new ball angle
   
+  -- TODO 19: Comment all the code of the TODO 14 and TODO 15 and make it bounce using the new ball angle
+  BallCollisionsPaddle()
   -- TODO 20: Detect the ball collision with the top and bottom of the field and make it bounce
   
   -- TODO 26: Add the needed code at TODO 23 to reset the ball speed
@@ -107,7 +109,7 @@ function love.draw()
   -- TODO 22: Comment all the code of the TODO 4 and use the playerPoints and cpuPOints variables to draw the points
 end
 
-function Keyboard__playerPaddle(dt)
+function Keyboard__PlayerPaddle(dt)
   if love.keyboard.isDown("up") then
     playerY = playerY - paddleSpeed*dt
   elseif love.keyboard.isDown("down") then
@@ -115,11 +117,41 @@ function Keyboard__playerPaddle(dt)
   end
 end
 
+--just for testing
+function Keyboard__CpuPaddle(dt)
+  if love.keyboard.isDown("w") then
+    cpuY= cpuY - paddleSpeed*dt
+  elseif love.keyboard.isDown("s") then
+    cpuY = cpuY + paddleSpeed*dt
+  end
+end
+
+--TODO 14
+--[[
 function BallCollisions()
   if playerX+paddleWidth > ballX-ballRadius then
     ballSpeed = ballSpeed*(-1)
   elseif cpuX < ballX+ballRadius then
     ballSpeed = ballSpeed*(-1)
   end
+end ]]--
+
+--TODO 19
+function BallCollisionsPaddle()
+  if playerX+paddleWidth > ballX-ballRadius then
+    --print("colision player")
+    ballAngle = -(ballAngle - math.pi/2) + math.pi/2
+  elseif cpuX < ballX+ballRadius then
+    --print("colision cpu")
+    ballAngle = -(ballAngle -math.pi/2) + math.pi/2
+  end
 end
 
+--TODO 20
+function BallCollisionsScreen()
+  if ballY<0 then
+    ballAngle = -(ballAngle - math.pi/2) + math.pi/2
+  elseif ballY>h then
+    ballAngle = -(ballAngle - math.pi/2) + math.pi/2
+  end
+end
