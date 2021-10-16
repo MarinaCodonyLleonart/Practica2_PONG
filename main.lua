@@ -148,16 +148,8 @@ end
 
 --TODO 20
 function BallCollisionsScreen()
-<<<<<<< Updated upstream
-  if ballY<0 then
-    ballAngle = -(-ballAngle - math.pi/4) + math.pi/4
-    
-  elseif ballY>h then
-    ballAngle = -(-ballAngle - math.pi/4) + math.pi/4
-=======
   if ballY<0 or ballY>h then
-    ballAngle = -(-ballAngle - math.pi/2) + math.pi/2
->>>>>>> Stashed changes
+    ballAngle = -(-ballAngle - math.pi/4) + math.pi/4
   end
 end
 
