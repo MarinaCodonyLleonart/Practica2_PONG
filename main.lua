@@ -73,8 +73,15 @@ function love.update(dt)
   
   -- TODO 23: Detect the ball collision with the player and cpu sides, increse the points accordingly and reset the ball
   
+    if ballX<0 then 
+      cpuPoints = cpuPoints+1
+      ballX, ballY = w/2, h/2 
+    
+    elseif ballX>w then 
+      playerPoints = playerPoints+1
+      ballX, ballY = w/2, h/2 
+    end
   -- TODO 24: Make the cpu paddle move to get the ball
-  
 end
 
 function love.draw()
@@ -145,9 +152,9 @@ end
 --TODO 20
 function BallCollisionsScreen()
   if ballY<0 then
-    ballAngle = -(-ballAngle - math.pi/2) + math.pi/2
+    ballAngle = -(-ballAngle - math.pi/4) + math.pi/4
     
   elseif ballY>h then
-    ballAngle = -(-ballAngle - math.pi/2) + math.pi/2
+    ballAngle = -(-ballAngle - math.pi/4) + math.pi/4
   end
 end
