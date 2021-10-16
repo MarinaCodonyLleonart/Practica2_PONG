@@ -74,6 +74,7 @@ function love.update(dt)
   
   -- TODO 19: Comment all the code of the TODO 14 and TODO 15 and make it bounce using the new ball angle
   BallCollisionsPaddle()
+  BallCollisionsScreen()
   -- TODO 20: Detect the ball collision with the top and bottom of the field and make it bounce
   
   -- TODO 26: Add the needed code at TODO 23 to reset the ball speed
@@ -150,8 +151,12 @@ end
 --TODO 20
 function BallCollisionsScreen()
   if ballY<0 then
-    ballAngle = -(ballAngle - math.pi/2) + math.pi/2
+    print("collision top")
+    ballAngle = -(-ballAngle - math.pi/2) + math.pi/2
+    
   elseif ballY>h then
-    ballAngle = -(ballAngle - math.pi/2) + math.pi/2
+    print(ballY)
+    print("collision bottom")
+    ballAngle = (ballAngle - math.pi/2) + math.pi/2
   end
 end
