@@ -34,13 +34,13 @@ function love.load(arg)
   paddleHeight = 100
   
   --TODO 12: Initialize the paddle speed
-  paddleSpeed = 100
+  paddleSpeed = 300
   
   --TODO 16: Initialize the ball angle
   ballAngle = math.pi/6
   
   -- TODO 18: Comment all the code of the TODO 8 and initialize the ball speed without sign
-  ballSpeed = 100
+  ballSpeed =100
   
   -- TODO 21: Initialize the player and cpu points variables
   playerPoints, cpuPoints = 0,0
@@ -82,7 +82,7 @@ function love.update(dt)
       ballX, ballY = w/2, h/2 
     end
   -- TODO 24: Make the cpu paddle move to get the ball
-  CpuPaddleMovement()
+  CpuPaddleMovement(dt)
 end
 
 function love.draw()
@@ -153,11 +153,13 @@ function BallCollisionsScreen()
   end
 end
 
-function CpuPaddleMovement()
+function CpuPaddleMovement(dt)
   --ballUVectorY = ballY/math.sqrt(ballX^2+ballY^2)
-  --ballUVectorX = ballX/math.sqrt(ballX^2+ballY^2)
-  distanceY = cpuX-ballX
-  forward = (cpuY-ballY)/math.sqrt(ballX^2+ballY^2)
-  cpuY = cpuY + forwards
-  
+  --distanceY = cpuY-ballY
+  forward = -(cpuY-ballY)/math.sqrt(ballX^2+ballY^2)
+  --cpuY = ballY-paddleHeight/2
+  --cpuY = cpuY - distanceY*dt*paddleSpeed 
+  --cpuY = cpuY - distanceY/(dt*paddleSpeed) 
+  --cpuY = cpuY + paddleSpeed*dt*forward
+  cpuY = cpuY + paddleSpeed*dt*forward
 end
