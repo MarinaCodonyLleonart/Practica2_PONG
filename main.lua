@@ -21,13 +21,6 @@ function love.load(arg)
   
   -- TODO 5: Load the font to use in the game and set it
   font = love.graphics.newFont( "pong.ttf", 80, "normal",     love.graphics.getDPIScale(0) )
-  
-  ---ELIMINAR DESPRES--
---local playerTextWidth = font:getWidth(playerPoints)
---local playerTextHeight = font:getHeight(playerPoints)
---local cpuTextWidth  = font:getWidth(cpuPoints)
---local cpuTextHeight = font:getHeight(cpuPoints)
-
 
 -- TODO 6: Initialize the position of the ball at the center of the screen
   
@@ -72,13 +65,16 @@ function love.update(dt)
   
   -- TODO 19: Comment all the code of the TODO 14 and TODO 15 and make it bounce using the new ball angle
   BallCollisionsPaddle()
-  BallCollisionsScreen()
+ 
   -- TODO 20: Detect the ball collision with the top and bottom of the field and make it bounce
-  
+  BallCollisionsScreen()
+   
   -- TODO 26: Add the needed code at TODO 23 to reset the ball speed
+  
   -- TODO 23: Detect the ball collision with the player and cpu sides, increse the points accordingly and reset the ball
   
   -- TODO 24: Make the cpu paddle move to get the ball
+  
 end
 
 function love.draw()
