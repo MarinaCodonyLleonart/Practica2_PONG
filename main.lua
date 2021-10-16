@@ -159,19 +159,20 @@ end
 
 function CpuPaddleMovement(dt)
   --ballUVectorY = ballY/math.sqrt(ballX^2+ballY^2)
-<<<<<<< Updated upstream
+
   --distanceY = cpuY-ballY
-  forward = -(cpuY-ballY)/math.sqrt(ballX^2+ballY^2)
+  
   --cpuY = ballY-paddleHeight/2
   --cpuY = cpuY - distanceY*dt*paddleSpeed 
   --cpuY = cpuY - distanceY/(dt*paddleSpeed) 
   --cpuY = cpuY + paddleSpeed*dt*forward
+  forward = -(cpuY-ballY)/math.sqrt(ballX^2+ballY^2)
   cpuY = cpuY + paddleSpeed*dt*forward
-=======
+--=======
   --ballUVectorX = ballX/math.sqrt(ballX^2+ballY^2)
  -- distanceY = cpuX-ballX
  -- forward = (cpuY-ballY)/math.sqrt(ballX^2+ballY^2)
   --cpuY = cpuY + forwards
   
->>>>>>> Stashed changes
+-- >>>>>>> Stashed changes
 end
