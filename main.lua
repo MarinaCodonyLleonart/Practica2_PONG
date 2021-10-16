@@ -40,8 +40,8 @@ function love.load(arg)
   ballAngle = math.pi/6
   
   -- TODO 18: Comment all the code of the TODO 8 and initialize the ball speed without sign
-
-  ballSpeed = 100
+  ballBaseSpeed = 100
+  ballSpeed = ballBaseSpeed
   paddleAcc = 0.1
   
   -- TODO 21: Initialize the player and cpu points variables
@@ -82,6 +82,7 @@ function love.update(dt)
     elseif ballX>w then 
       playerPoints = playerPoints+1
       ballX, ballY = w/2, h/2 
+      ballSpeed = ballBaseSpeed
     end
   -- TODO 24: Make the cpu paddle move to get the ball
   CpuPaddleMovement(dt)
@@ -146,7 +147,7 @@ function BallCollisionsPaddle()
   --if playerX+paddleWidth > ballX-ballRadius and ballY>cpuX-paddleWidth < ballX+ballRadius then
   if playerX+paddleWidth > ballX-ballRadius or cpuX < ballX+ballRadius then
     ballAngle = -(ballAngle - math.pi/2) + math.pi/2
-    ballSpeed=ballSpeed*paddleAcc
+    ballSpeed=ballSpeed + ballSpeed*paddleAcc
   end
 end
 
@@ -154,25 +155,16 @@ end
 function BallCollisionsScreen()
   if ballY<0 or ballY>h then
     ballAngle = -(-ballAngle - math.pi/4) + math.pi/4
+    ballSpeed = ballSpeed + ballSpeed*paddleAcc
   end
 end
 
 function CpuPaddleMovement(dt)
-  --ballUVectorY = ballY/math.sqrt(ballX^2+ballY^2)
-
   --distanceY = cpuY-ballY
-  
+  forward = -(cpuY-ballY)/math.sqrt(ballX^2+ballY^2)
   --cpuY = ballY-paddleHeight/2
   --cpuY = cpuY - distanceY*dt*paddleSpeed 
   --cpuY = cpuY - distanceY/(dt*paddleSpeed) 
   --cpuY = cpuY + paddleSpeed*dt*forward
-  forward = -(cpuY-ballY)/math.sqrt(ballX^2+ballY^2)
   cpuY = cpuY + paddleSpeed*dt*forward
---=======
-  --ballUVectorX = ballX/math.sqrt(ballX^2+ballY^2)
- -- distanceY = cpuX-ballX
- -- forward = (cpuY-ballY)/math.sqrt(ballX^2+ballY^2)
-  --cpuY = cpuY + forwards
-  
--- >>>>>>> Stashed changes
 end
