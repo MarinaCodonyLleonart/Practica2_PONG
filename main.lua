@@ -40,12 +40,9 @@ function love.load(arg)
   ballAngle = math.pi/6
   
   -- TODO 18: Comment all the code of the TODO 8 and initialize the ball speed without sign
-<<<<<<< Updated upstream
-  ballSpeed =100
-=======
+
   ballSpeed = 100
   paddleAcc = 0.1
->>>>>>> Stashed changes
   
   -- TODO 21: Initialize the player and cpu points variables
   playerPoints, cpuPoints = 0,0
