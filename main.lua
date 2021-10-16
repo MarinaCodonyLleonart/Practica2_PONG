@@ -16,14 +16,14 @@ function love.load(arg)
   if arg[#arg] == "-debug" then require("mobdebug").start() end -- Enable the debugging with ZeroBrane Studio
   
   w, h = love.graphics.getDimensions() -- Get the screen width and height
-  ballX, ballY = w/2, h/2
   ballRadius = 10
   
   -- TODO 5: Load the font to use in the game and set it
   font = love.graphics.newFont( "pong.ttf", 80, "normal",     love.graphics.getDPIScale(0) )
 
 -- TODO 6: Initialize the position of the ball at the center of the screen
-  
+    ballX, ballY = w/2, h/2
+
   -- TODO 8: Initialize the ball speed for going to the left
   --ballSpeed = -100
   
