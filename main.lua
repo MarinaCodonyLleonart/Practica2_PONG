@@ -151,12 +151,9 @@ end
 --TODO 20
 function BallCollisionsScreen()
   if ballY<0 then
-    print("collision top")
     ballAngle = -(-ballAngle - math.pi/2) + math.pi/2
     
   elseif ballY>h then
-    print(ballY)
-    print("collision bottom")
-    ballAngle = (ballAngle - math.pi/2) + math.pi/2
+    ballAngle = -(-ballAngle - math.pi/2) + math.pi/2
   end
 end
