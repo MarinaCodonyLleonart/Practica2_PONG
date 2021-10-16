@@ -82,6 +82,7 @@ function love.update(dt)
       ballX, ballY = w/2, h/2 
     end
   -- TODO 24: Make the cpu paddle move to get the ball
+  CpuPaddleMovement()
 end
 
 function love.draw()
@@ -140,21 +141,31 @@ end ]]--
 
 --TODO 19
 function BallCollisionsPaddle()
-  if playerX+paddleWidth > ballX-ballRadius then
-    --print("colision player")
+  if playerX+paddleWidth > ballX-ballRadius or cpuX < ballX+ballRadius then
     ballAngle = -(ballAngle - math.pi/2) + math.pi/2
-  elseif cpuX < ballX+ballRadius then
-    --print("colision cpu")
-    ballAngle = -(ballAngle -math.pi/2) + math.pi/2
   end
 end
 
 --TODO 20
 function BallCollisionsScreen()
+<<<<<<< Updated upstream
   if ballY<0 then
     ballAngle = -(-ballAngle - math.pi/4) + math.pi/4
     
   elseif ballY>h then
     ballAngle = -(-ballAngle - math.pi/4) + math.pi/4
+=======
+  if ballY<0 or ballY>h then
+    ballAngle = -(-ballAngle - math.pi/2) + math.pi/2
+>>>>>>> Stashed changes
   end
+end
+
+function CpuPaddleMovement()
+  --ballUVectorY = ballY/math.sqrt(ballX^2+ballY^2)
+  --ballUVectorX = ballX/math.sqrt(ballX^2+ballY^2)
+  distanceY = cpuX-ballX
+  forward = (cpuY-ballY)/math.sqrt(ballX^2+ballY^2)
+  cpuY = cpuY + forwards
+  
 end
