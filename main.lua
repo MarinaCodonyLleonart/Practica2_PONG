@@ -144,8 +144,10 @@ end ]]--
 
 --TODO 19
 function BallCollisionsPaddle()
-  --if playerX+paddleWidth > ballX-ballRadius and ballY>cpuX-paddleWidth < ballX+ballRadius then
-  if playerX+paddleWidth > ballX-ballRadius or cpuX < ballX+ballRadius then
+  --if playerX+paddleWidth > ballX-ballRadius or cpuX < ballX+ballRadius then
+  --if isBallCollisionsPaddleCpu() or isBallCollisionsPaddlePlayer() then
+  if (ballY>playerY and ballY<playerY+paddleHeight and ballX<playerX+paddleWidth)
+    or (ballY>cpuY and ballY<cpuY+paddleHeight and ballX>cpuX-paddleWidth) then
     ballAngle = -(ballAngle - math.pi/2) + math.pi/2
     ballSpeed=ballSpeed + ballSpeed*paddleAcc
   end
