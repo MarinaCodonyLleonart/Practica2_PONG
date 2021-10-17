@@ -40,7 +40,7 @@ function love.load(arg)
   ballAngle = math.pi/6
   
   -- TODO 18: Comment all the code of the TODO 8 and initialize the ball speed without sign
-  ballBaseSpeed = 100
+  ballBaseSpeed = 150
   ballSpeed = ballBaseSpeed
   paddleAcc = 0.1
   
@@ -74,15 +74,12 @@ function love.update(dt)
   -- TODO 26: Add the needed code at TODO 23 to reset the ball speed
   
   -- TODO 23: Detect the ball collision with the player and cpu sides, increse the points accordingly and reset the ball
-  
     if ballX<0 then 
-      cpuPoints = cpuPoints+1
-      ballX, ballY = w/2, h/2 
-    
+      cpuPoints = cpuPoints + 1
+      ResetBall()
     elseif ballX>w then 
-      playerPoints = playerPoints+1
-      ballX, ballY = w/2, h/2 
-      ballSpeed = ballBaseSpeed
+      playerPoints = playerPoints + 1
+      ResetBall()
     end
   -- TODO 24: Make the cpu paddle move to get the ball
   CpuPaddleMovement(dt)
@@ -157,7 +154,7 @@ end
 function BallCollisionsScreen()
   if ballY<0 or ballY>h then
     ballAngle = -(-ballAngle - math.pi/4) + math.pi/4
-    ballSpeed = ballSpeed + ballSpeed*paddleAcc
+   -- ballSpeed = ballSpeed + ballSpeed*paddleAcc--ELIMINAR
   end
 end
 
@@ -170,3 +167,9 @@ function CpuPaddleMovement(dt)
   --cpuY = cpuY + paddleSpeed*dt*forward
   cpuY = cpuY + paddleSpeed*dt*forward
 end
+
+--TODO26
+    function ResetBall()
+      ballX, ballY = w/2, h/2
+      ballSpeed = ballBaseSpeed 
+    end
