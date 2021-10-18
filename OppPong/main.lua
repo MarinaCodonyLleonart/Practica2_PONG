@@ -1,3 +1,5 @@
+
+Object = require "lib/classic"
 local w, h -- Variables to store the screen width and height
 
 local ballX, ballY -- Variables to store the position of the ball in the screen (Uncomment at the start of TODO 6)
@@ -20,7 +22,7 @@ function love.load(arg)
   ballRadius = 10
   
   -- TODO 5: Load the font to use in the game and set it
-  font = love.graphics.newFont( "pong.ttf", 80, "normal",     love.graphics.getDPIScale(0) )
+  font = love.graphics.newFont( "resources/pong.ttf", 80, "normal",     love.graphics.getDPIScale(0) )
 
 -- TODO 6: Initialize the position of the ball at the center of the screen
   
