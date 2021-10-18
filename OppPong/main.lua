@@ -1,18 +1,6 @@
 
 Object = require "lib/classic"
-local w, h -- Variables to store the screen width and height
-
-local ballX, ballY -- Variables to store the position of the ball in the screen (Uncomment at the start of TODO 6)
-local ballRadius
-local ballSpeed -- Variable to store the ball speed (Uncomment at the start of TODO 8)
-
-local playerX, playerY, cpuX, cpuY -- Variables to store the position of the player and cpu paddle (Uncomment at the start of TODO 10)
-local paddleWidth 
-local paddleHeight 
-local paddleSpeed -- Variable to store the paddle speed (Uncomment at the start of TODO 12)
-
-local ballAngle -- Variable to estore the ball movement angle (Uncomment at the start of TODO 16)
-local playerPoints, cpuPoints -- Variable to store the player and cpu points (Uncomment at the start of TODO 21)
+local ball = ball or require "scr/data.lua"
 
 function love.load(arg)
   if arg[#arg] == "-debug" then require("mobdebug").start() end -- Enable the debugging with ZeroBrane Studio
@@ -23,7 +11,7 @@ function love.load(arg)
   
   -- TODO 5: Load the font to use in the game and set it
 
-  font = love.graphics.newFont( "Resources/pong.ttf", 80, "normal",     love.graphics.getDPIScale(0) )
+  font = love.graphics.newFont( "Resources/pong.ttf", 80, "normal", love.graphics.getDPIScale(0) )
 
 -- TODO 6: Initialize the position of the ball at the center of the screen
   
