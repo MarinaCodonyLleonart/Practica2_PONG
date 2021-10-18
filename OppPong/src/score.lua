@@ -1,5 +1,9 @@
 Cscore = Object:extend()
 
+function Cscore:new()
+  
+end
+
 function Cscore.load(arg)
 
 end

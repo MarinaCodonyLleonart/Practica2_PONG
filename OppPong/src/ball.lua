@@ -1,5 +1,9 @@
 local Cball = Object:extend()
 
+function Cball:new()
+  
+end
+
 function Cball.load(arg)
 
 end

@@ -1,5 +1,9 @@
 Cpaddle = Object:extend()
 
+function Cpaddle:new()
+  
+end
+
 function Cpaddle.load(arg)
 
 end
