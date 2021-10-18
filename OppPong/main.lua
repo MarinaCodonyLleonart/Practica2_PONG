@@ -1,6 +1,9 @@
-
 Object = require "lib/classic"
-local ball = ball or require "scr/data.lua"
+local data = object.data or require "src/data.lua"
+local ball = object.data or require "src/ball.lua"
+local paddle = object.paddle or require "src/paddle.lua"
+local score = object.score or require "src/score.lua"
+
 
 function love.load(arg)
   if arg[#arg] == "-debug" then require("mobdebug").start() end -- Enable the debugging with ZeroBrane Studio
