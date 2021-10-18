@@ -20,7 +20,7 @@ function love.load(arg)
   ballRadius = 10
   
   -- TODO 5: Load the font to use in the game and set it
-  font = love.graphics.newFont( "pong.ttf", 80, "normal",     love.graphics.getDPIScale(0) )
+  font = love.graphics.newFont( "Resources/pong.ttf", 80, "normal",     love.graphics.getDPIScale(0) )
 
 -- TODO 6: Initialize the position of the ball at the center of the screen
   
