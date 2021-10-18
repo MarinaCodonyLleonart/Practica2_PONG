@@ -1,5 +1,6 @@
 Cpaddle = Object:extend()
-
+function Cpaddle:new()
+end
 function Cpaddle.load(arg)  
   --Size
   paddleWidth = 10
@@ -12,7 +13,6 @@ function Cpaddle.load(arg)
   --Position
   playerX, playerY = 20, d.h/2-50
   cpuX, cpuY =  d.w -30, d.h/2-50
-
 end
 
 function Cpaddle.update(dt)

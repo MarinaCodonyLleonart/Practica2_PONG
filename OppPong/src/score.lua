@@ -1,5 +1,9 @@
 Cscore = Object:extend()
 
+function Cscore:new()
+  
+end
+
 function Cscore.load(arg)
   --Font
   font = love.graphics.newFont( "Resources/pong.ttf", 80, "normal", love.graphics.getDPIScale(0) )

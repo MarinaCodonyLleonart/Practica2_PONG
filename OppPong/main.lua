@@ -132,8 +132,7 @@ end
 
 --TODO 20
 function BallCollisionsScreen()
-  if ballY<0 or ballY>d.h
- then
+  if ballY<0 or ballY>d.h then
     ballAngle = -(-ballAngle - math.pi/4) + math.pi/4
    -- ballSpeed = ballSpeed + ballSpeed*paddleAcc--ELIMINAR
   end
@@ -151,8 +150,6 @@ end
 
 --TODO26
     function ResetBall()
-      ballX, ballY = d.w
-/2, d.h
-/2
+      ballX, ballY = d.w/2, d.h/2
       ballSpeed = ballBaseSpeed 
     end

@@ -3,6 +3,10 @@ local Cdata = Cdata or require "data"
 local d = Cdata()
 
 
+function Cball:new()
+  
+end
+
 function Cball.load(arg)
   
   ballX, ballY = d.w/2, d.h/2
