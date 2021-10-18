@@ -7,26 +7,31 @@ local Cscore = Ccore or require "src/score"
 
 function love.load(arg)
   if arg[#arg] == "-debug" then require("mobdebug").start() end -- Enable the debugging with ZeroBrane Studio
-  w, h = love.graphics.getDimensions() -- Get the screen width and height
-  ballX, ballY = w/2, h/2
+  
+  local d = Cdata()
+  local ball = Cball()
+  local playerPaddle = Cpaddle()
+  local cpuPaddle = Cpaddle()
+  
+  d.w, d.h
+  = love.graphics.getDimensions() -- Get the screen width and height
+  ballX, ballY = d.w
+/2, d.h
+/2
   ballRadius = 10
   
-  -- TODO 5: Load the font to use in the game and set it
 
   font = love.graphics.newFont( "Resources/pong.ttf", 80, "normal", love.graphics.getDPIScale(0) )
 
--- TODO 6: Initialize the position of the ball at the center of the screen
-  
-  -- TODO 8: Initialize the ball speed for going to the left
-  --ballSpeed = -100
-  
-  -- TODO 10: Initialize the player and cpu paddles position
-  playerX, playerY = 20, h/2-50
-  cpuX, cpuY =  w-30, h/2-50
+
+  playerX, playerY = 20, d.h
+/2-50
+  cpuX, cpuY =  d.w
+-30, d.h
+/2-50
   paddleWidth = 10
   paddleHeight = 100
   
-  --TODO 12: Initialize the paddle speed
   paddleSpeed = 300
   
   --TODO 16: Initialize the ball angle
@@ -70,7 +75,8 @@ function love.update(dt)
     if ballX<0 then 
       cpuPoints = cpuPoints + 1
       ResetBall()
-    elseif ballX>w then 
+    elseif ballX>d.w
+ then 
       playerPoints = playerPoints + 1
       ResetBall()
     end
@@ -81,7 +87,10 @@ end
 function love.draw()
   -- TODO 1: Draw the center of the field
   --love.graphics.rectangle("fill", 800/2-1, 0,5, 600)
-  love.graphics.line(w/2, 0, w/2,h)
+  love.graphics.line(d.w
+/2, 0, d.w
+/2,d.h
+)
   
   -- TODO 2: Draw the ball at the center of the field
   love.graphics.circle( "fill", ballX, ballY, ballRadius )
@@ -101,8 +110,12 @@ function love.draw()
   love.graphics.rectangle("fill", cpuX, cpuY,paddleWidth, paddleHeight)
   
   -- TODO 22: Comment all the code of the TODO 4 and use the playerPoints and cpuPOints variables to draw the points
-  love.graphics.print(playerPoints, font, w/4-20, h/4-110, 0, 1, 1, 0, 0, 0, 0 )
-  love.graphics.print(cpuPoints, font, w/4*3-20, h/4-110, 0, 1, 1, 0, 0, 0, 0 )
+  love.graphics.print(playerPoints, font, d.w
+/4-20, d.h
+/4-110, 0, 1, 1, 0, 0, 0, 0 )
+  love.graphics.print(cpuPoints, font, d.w
+/4*3-20, d.h
+/4-110, 0, 1, 1, 0, 0, 0, 0 )
 end
 
 function Keyboard__PlayerPaddle(dt)
@@ -145,7 +158,8 @@ end
 
 --TODO 20
 function BallCollisionsScreen()
-  if ballY<0 or ballY>h then
+  if ballY<0 or ballY>d.h
+ then
     ballAngle = -(-ballAngle - math.pi/4) + math.pi/4
    -- ballSpeed = ballSpeed + ballSpeed*paddleAcc--ELIMINAR
   end
@@ -163,6 +177,8 @@ end
 
 --TODO26
     function ResetBall()
-      ballX, ballY = w/2, h/2
+      ballX, ballY = d.w
+/2, d.h
+/2
       ballSpeed = ballBaseSpeed 
     end
