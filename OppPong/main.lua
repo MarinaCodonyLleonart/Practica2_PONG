@@ -13,37 +13,11 @@ function love.load(arg)
   local playerPaddle = Cpaddle()
   local cpuPaddle = Cpaddle()
   
-  d.w, d.h
-  = love.graphics.getDimensions() -- Get the screen width and height
-  ballX, ballY = d.w
-/2, d.h
-/2
-  ballRadius = 10
+  d.w, d.h = love.graphics.getDimensions() -- Get the screen width and height  
   
-
-  font = love.graphics.newFont( "Resources/pong.ttf", 80, "normal", love.graphics.getDPIScale(0) )
-
-
-  playerX, playerY = 20, d.h
-/2-50
-  cpuX, cpuY =  d.w
--30, d.h
-/2-50
-  paddleWidth = 10
-  paddleHeight = 100
   
-  paddleSpeed = 300
-  
-  --TODO 16: Initialize the ball angle
-  ballAngle = math.pi/6
-  
-  -- TODO 18: Comment all the code of the TODO 8 and initialize the ball speed without sign
-  ballBaseSpeed = 150
-  ballSpeed = ballBaseSpeed
-  paddleAcc = 0.1
-  
-  -- TODO 21: Initialize the player and cpu points variables
-  playerPoints, cpuPoints = 0,0
+ 
+ 
 end
 
 function love.update(dt)
