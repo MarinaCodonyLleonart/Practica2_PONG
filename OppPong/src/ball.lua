@@ -2,6 +2,7 @@ local Cball = Object:extend()
 local Cdata = Cdata or require "data"
 
 function Cball:new()
+  
 end
 
 function Cball.load(arg)
