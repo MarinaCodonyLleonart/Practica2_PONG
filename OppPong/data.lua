@@ -1,9 +1,4 @@
-local data = Object:extend()
-
-
-
-
-
+local Cdata = Object:extend()
 
 
 

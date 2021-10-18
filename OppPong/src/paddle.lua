@@ -1,20 +1,15 @@
-Paddle = Object:extend()
+Cpaddle = Object:extend()
 
-function Point:new(x, y)
-  self.x = x or 0
-  self.y = y or 0
-end
-
-function Paddle.load(arg)
+function Cpaddle.load(arg)
 
 end
 
-function Paddle.update(dt)
+function Cpaddle.update(dt)
   
 end
 
-function Paddle.draw()
+function Cpaddle.draw()
   
 end
 
-return Paddle
+return Cpaddle

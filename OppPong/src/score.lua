@@ -1,21 +1,15 @@
-Score = Object:extend()
+Cscore = Object:extend()
 
-function Point:new(x, y)
-  self.x = x or 0
-  self.y = y or 0
-end
-
-
-function Score.load(arg)
+function Cscore.load(arg)
 
 end
 
-function Score.update(dt)
+function Cscore.update(dt)
   
 end
 
-function Score.draw()
+function Cscore.draw()
   
 end
 
-return Score
+return Cscore

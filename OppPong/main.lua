@@ -1,13 +1,12 @@
 Object = require "lib/classic"
-local data = object.data or require "src/data.lua"
-local ball = object.data or require "src/ball.lua"
-local paddle = object.paddle or require "src/paddle.lua"
-local score = object.score or require "src/score.lua"
+local Cdata = Cdata or require "data"
+local Cball = Cball or require "src/ball"
+local Cpaddle = paddle or require "src/paddle"
+local Cscore = Ccore or require "src/score"
 
 
 function love.load(arg)
   if arg[#arg] == "-debug" then require("mobdebug").start() end -- Enable the debugging with ZeroBrane Studio
-  
   w, h = love.graphics.getDimensions() -- Get the screen width and height
   ballX, ballY = w/2, h/2
   ballRadius = 10

@@ -1,20 +1,15 @@
-local Ball = Object:extend()
+local Cball = Object:extend()
 
-function Point:new(x, y)
-  self.x = x or 0
-  self.y = y or 0
-end
-
-function Ball.load(arg)
+function Cball.load(arg)
 
 end
 
-function Ball.update(dt)
+function Cball.update(dt)
   
 end
 
-function Ball.draw()
+function Cball.draw()
   
 end
 
-return Ball
+return Cball
