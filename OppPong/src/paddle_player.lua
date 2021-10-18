@@ -1,0 +1,1 @@
+Cpaddle_player = Cpaddle:extend()

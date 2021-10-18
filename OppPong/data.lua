@@ -1,19 +1,24 @@
 local Cdata = Object:extend()
 
-function Cdata:new(x, y)
-  local w, h -- width and height
+function Cdata:new()
+  
+  local w, h = love.graphics.getDimensions() -- width and height
 
-  local ballX, ballY --ballposition
-  local ballRadius
-  local ballSpeed
-
-  local playerX, playerY, cpuX, cpuY --player and cpu's paddle position
-  local paddleWidth 
-  local paddleHeight 
-  local paddleSpeed
-
-  local ballAngle --ball movement angle
+  local ball0X, ball0Y = d.w/2, d.h/2 --ballposition
+  local ballRadius = 10
+  local ballBaseSpeed = 150
+  local ballAngle = math.pi/6
+  
+  local player0X, player0Y = 20, h/2-50
+  local cpu0X, cpu0Y = w-30, h/2-50
+  local paddleWidth = 10
+  local paddleHeight = 100
+  local paddleBaseSpeed = 300
+  local paddleAcc = 0.1
+  
+  
   local playerPoints, cpuPoints --player and cpu points in match
+  
 end
 
 return Cdata
