@@ -6,17 +6,15 @@ local d = require "data"
 --local m = require "main"
 --print(m.paddlePlayer.pX)
 
+local bX, bY = 0 ,0
+local bSpeed = 0
+local bAngle = 0
 
-
-local bX, bY
-local bSpeed
-local bAngle
-
-function Cball:new(x, y)
+function Cball:new()
   --d = Cdata()
   
-  bX, bY = x, y 
-
+  bX, bY = ball0X, ball0Y
+  print(bx)
   --load ball sprite
   print(ballBaseSpeed)
   bSpeed = 150
@@ -26,11 +24,11 @@ function Cball:new(x, y)
 end
 
 
-function Cball:update(dt)
+function Cball:update(dt, p, c)
   bX = bX + bSpeed *dt*math.cos(bAngle)
   bY = bY+ bSpeed *dt*math.sin(bAngle)
   
-  BallCollisionsPaddle()
+  BallCollisionsPaddle(p, c)
   
   BallCollisionsScreen()
   
@@ -52,10 +50,10 @@ function ResetBall()
       bSpeed = ballBaseSpeed 
     end
 
-function BallCollisionsPaddle()
+function BallCollisionsPaddle(p, c)
   
-  if (bY>player0Y and bY<player0Y+paddleHeight and bX<player0X+paddleWidth)
-    or (bY>cpu0Y and bY<cpu0Y+paddleHeight and bX>cpu0X-paddleWidth) then
+  if (self.bY>p.super.pY and self.bY<p.super.pY+paddleHeight and self.bX<p.super.pX+paddleWidth)
+    or (self.bY>c.super.pY and self.bY<c.super.pY+paddleHeight and self.bX>c.super.pX-paddleWidth) then
     bAngle = -(bAngle - math.pi/2) + math.pi/2
     bSpeed = bSpeed + bSpeed*paddleAcc
   end
