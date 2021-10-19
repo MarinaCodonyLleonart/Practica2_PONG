@@ -4,8 +4,6 @@ local Cball = Actor:extend() --2: make the hierarchy
 local Vector = Vector or require "src/vector"
 local vector = Vector()
 
---local Cmain = Cmain or require "main" --is used in BallCollisionsPaddle()
---local main = Cmain()
 local Cdata = Cdata or require "data"
 local d = Cdata()
 
@@ -13,25 +11,20 @@ function Cball:new(x, y)
   --Actor:new(image,x,y,speed,fx,fy)
   Cball.super:new("Resources/flowerBall.png",d.ballX,d.ballY,d.ballBaseSpeed,1,0)
   self.scale= vector.new(0.5,0.5)
- -- self.position = vector.new(d.ballX, d.ballY)
-  --bx, by = x, y or d.ballX, d.ballY
- -- self.speed = d.ballBaseSpeed
   --self.rot = d.ballAngle
-  --local bSpeed = d.ballBaseSpeed
-  --local bAngle = d.ballAngle
 end
 
-function Cball:update(dt,cpuPaddle,playerPaddle)
-  BallCollisionsPaddle()
+function Cball:update(dt, cpuPaddle, playerPaddle)
+  Cball.super:update(dt)
+  BallCollisionsPaddle(cpuPaddle, playerPaddle)
   BallCollisionsScreen()
   --main = require "main"
   self.forward = self.forward.rotate(self.rot)
   
-  Cball.super:update(dt)
+  
   
   --self.position = (self.position.X +bSpeed*dt*math.cos(bAngle),
                    --self.position.Y + bSpeed*dt*math.sin(bAngle))
-                   
   --bX = bX + bSpeed*dt*math.cos(bAngle)
   --bY = bY + bSpeed*dt*math.sin(bAngle)
  
@@ -68,11 +61,20 @@ function BallCollisionsPaddle()
   
 end
 
-function BallCollisionsScreen() --Superior and inferior parts of the screen
+function BallCollisionsScreen() 
+  --Superior and inferior parts of the screen
   if self.position.y<0 or self.position.y>d.h then
     self.rot = -(-self.rot - math.pi/4) + math.pi/4
   end
   
+  --Lateral sides of the screen
+  if self.position.x<0 then 
+      cpuPoints = cpuPoints + 1
+      ResetBall()
+  elseif self.position.x>d.w then 
+      playerPoints = playerPoints + 1
+      ResetBall()
+  end
 end
 
 return Cball

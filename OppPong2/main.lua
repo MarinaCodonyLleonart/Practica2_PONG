@@ -38,15 +38,15 @@ end
 
 function love.update(dt)
   --Actors update
- --for _,v in ipairs(actorList) do v:update(dt) end
-  ball.update(dt, cpuPaddle, playerPaddle)
+  --for _,v in ipairs(actorList) do v:update(dt) end
+  ball:update(dt, cpuPaddle, playerPaddle)
   
-  cpuPaddle.update(dt, ball)
+  cpuPaddle:update(dt, ball)
 
-  playerPaddle.update(dt)
+  playerPaddle:update(dt)
 
   --Score update
-  score.update()
+  score:update()
 end
 
 function love.draw()

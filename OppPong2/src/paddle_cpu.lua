@@ -29,7 +29,7 @@ end
 
 function Keyboard__CpuPaddle(dt)
   if love.keyboard.isDown("w") then
-    self.position.y = self.position.y - self.Speed*dt
+    self.position.y = self.position.y - self.speed*dt
   elseif love.keyboard.isDown("s") then
     self.position.y = self.position.y + self.speed*dt
   end
