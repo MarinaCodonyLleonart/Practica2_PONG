@@ -8,17 +8,9 @@ local d = Cdata()
 --local pSpeed
 
 function Cpaddle:new(x, y)
-
-end
-
-function Cpaddle.load(arg)  
-  pSpeed = d.paddleBaseSpeed
-  --Position
-  
 end
 
 function Cpaddle.update(dt)
-  
 end
 
 function Cpaddle.draw()
@@ -29,7 +21,7 @@ function Cpaddle.draw()
   local sx = self.scale.x
   local sy = self.scale.y
   local rr = self.rot
-  love.graphics.draw(self.image,xx,yy,rr,sx,sy,ox,oy,0,0)end
+  love.graphics.draw(self.image,xx,yy,rr,sx,sy,ox,oy,0,0)
   
 end
 

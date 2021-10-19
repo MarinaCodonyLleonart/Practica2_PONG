@@ -1,7 +1,9 @@
-Cpaddle_player = Cpaddle:extend()
+local Cpaddle = Cpaddle or require "src/paddle"
+local Cpaddle_player = Cpaddle:extend()
 
 function Cpaddle_player:new(x, y)
- Cpaddle_player.super.new(self,"Resources/playerShip1_blue.png",400,300,50,1,0)
+ Cpaddle_player.super.new(self,"Resources/redPaddle.png",d.player0X,d.player0Y,d.paddleBaseSpeed,0,0)  --Actor:new(image,x,y,speed,fx,fy)
+
 end
 
 function Cpaddle_player.update(dt)
