@@ -1,54 +1,46 @@
 Object = require "lib/classic"
-local Cdata = Cdata or require "data"
-local Cball = Cball or require "src/ball"
-local Cpaddle = paddle or require "src/paddle"
-local Cpaddle_player = Cpaddle_player or require "src/paddle_player"
-local Cpaddle_cpu = Cpaddle_cpu or require "src/paddle_cpu"
-local Cscore = Cscore or require "src/score"
+--local Cdata = Cdata or require "d"
+--local d = require "data"
+Cball = Cball or require "src/ball"
+Cpaddle = paddle or require "src/paddle"
+Cpaddle_player = Cpaddle_player or require "src/paddle_player"
+Cpaddle_cpu = Cpaddle_cpu or require "src/paddle_cpu"
+Cscore = Cscore or require "src/score"
 
 function love.load(arg)
   if arg[#arg] == "-debug" then require("mobdebug").start() end -- Enable the debugging with ZeroBrane Studio
   
-  local d = Cdata()
-  ball = Cball(d.ball0X, d. ball0Y)
-  playerPaddle = Cpaddle_player(d.player0X, d.player0Y)
-  cpuPaddle = Cpaddle_cpu(d.cpu0X, d.cpu0Y)
+  --local d = Cdata()
+  ball = Cball(ball0X, ball0Y)
+  playerPaddle = Cpaddle_player(player0X, player0Y)
+  cpuPaddle = Cpaddle_cpu(cpu0X, cpu0Y)
   
-  ball.load()
+  
   playerPaddle.load()
   cpuPaddle.load()
   
 end
 
 function love.update(dt)
- ball.update(dt)
- playerPaddle.update(dt)
- cpuPadle.update(dt)
+
+ ball:update(dt)
+ playerPaddle:update(dt)
+ cpuPaddle:update(dt)
+ 
 end
 
 function love.draw()
- ball.draw()
- playerPaddle.draw()
- cpuPadle.draw()
+  
+ ball:draw()
+ playerPaddle:draw()
+ cpuPaddle:draw()
  
  --Background
-  love.graphics.line(d.w/2, 0, d.w/2,d.h)
-  
-  -- TODO 11: Comment all the code of the TODO 3 and use the playerX, playerY, cpuX and cpuY variables to draw the player and cpu paddles
- -- love.graphics.rectangle("fill", playerX, playerY,paddleWidth, paddleHeight)
- -- love.graphics.rectangle("fill", cpuX, cpuY,paddleWidth, paddleHeight)
-  
-  -- TODO 22: Comment all the code of the TODO 4 and use the playerPoints and cpuPOints variables to draw the points
+  love.graphics.line(w/2, 0, w/2,h)
   
 end
 
-function Keyboard__PlayerPaddle(dt)
-  if love.keyboard.isDown("up") then
-    playerY = playerY - paddleSpeed*dt
-  elseif love.keyboard.isDown("down") then
-    playerY = playerY + paddleSpeed*dt
-  end
-end
+
 
 --just for testing
 function Keyboard__CpuPaddle(dt)
