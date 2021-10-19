@@ -4,7 +4,6 @@ local Cball = Cball or require "src/ball"
 local Cpaddle = paddle or require "src/paddle"
 local Cscore = Cscore or require "src/score"
 
-
 function love.load(arg)
   if arg[#arg] == "-debug" then require("mobdebug").start() end -- Enable the debugging with ZeroBrane Studio
   
@@ -13,21 +12,29 @@ function love.load(arg)
   local playerPaddle = Cpaddle_player()
   local cpuPaddle = Cpaddle_cpu()
   
+  ball.load()
+  playerPaddle.load()
+  cpuPaddle.load()
+  
 end
 
 function love.update(dt)
- 
+ ball.update()
+ playerPaddle.update()
+ cpuPadle.update()
 end
 
 function love.draw()
-  
+ ball.draw()
+ playerPaddle.draw()
+ cpuPadle.draw()
+ 
+ --Background
   love.graphics.line(d.w/2, 0, d.w/2,d.h)
   
- 
-  
   -- TODO 11: Comment all the code of the TODO 3 and use the playerX, playerY, cpuX and cpuY variables to draw the player and cpu paddles
-  love.graphics.rectangle("fill", playerX, playerY,paddleWidth, paddleHeight)
-  love.graphics.rectangle("fill", cpuX, cpuY,paddleWidth, paddleHeight)
+ -- love.graphics.rectangle("fill", playerX, playerY,paddleWidth, paddleHeight)
+ -- love.graphics.rectangle("fill", cpuX, cpuY,paddleWidth, paddleHeight)
   
   -- TODO 22: Comment all the code of the TODO 4 and use the playerPoints and cpuPOints variables to draw the points
   
@@ -49,8 +56,6 @@ function Keyboard__CpuPaddle(dt)
     cpuY = cpuY + paddleSpeed*dt
   end
 end
-
-
 
 function CpuPaddleMovement(dt)
   forward = -(cpuY-ballY)/math.sqrt(ballX^2+ballY^2)

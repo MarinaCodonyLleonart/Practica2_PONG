@@ -4,7 +4,7 @@ function Cdata:new()
   
   local w, h = love.graphics.getDimensions() -- width and height
 
-  local ball0X, ball0Y = d.w/2, d.h/2 --ballposition
+  local ball0X, ball0Y = w/2, h/2 --ballposition
   local ballRadius = 10
   local ballBaseSpeed = 150
   local ballAngle = math.pi/6
