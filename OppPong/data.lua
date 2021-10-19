@@ -1,5 +1,26 @@
-local Cdata = Object:extend()
+--local Object = Object or require "lib/classic"
+--local Cdata = Object:extend()
+--module("d",package.seeall)
 
+w, h = love.graphics.getDimensions() -- width and height
+
+ball0X, ball0Y = w/2, h/2 --ballposition
+ballRadius = 10
+ballBaseSpeed = 150
+ballAngle = math.pi/6
+
+player0X, player0Y = 20, h/2-50
+cpu0X, cpu0Y = w-30, h/2-50
+paddleWidth = 10
+paddleHeight = 100
+paddleBaseSpeed = 300
+paddleAcc = 0.1
+
+--playerPoints, cpuPoints --player and cpu points in match
+
+return data
+
+--[[
 function Cdata:new()
   
   local w, h = love.graphics.getDimensions() -- width and height
@@ -20,4 +41,5 @@ function Cdata:new()
   
 end
 
-return Cdata
+
+]]--
