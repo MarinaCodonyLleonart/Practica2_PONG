@@ -22,7 +22,6 @@ function Cpaddle.draw()
   local sy = self.scale.y
   local rr = self.rot
   love.graphics.draw(self.image,xx,yy,rr,sx,sy,ox,oy,0,0)
-  
 end
 
 return Cpaddle

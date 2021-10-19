@@ -19,13 +19,13 @@ function love.load(arg)
   ball:new()
   table.insert(actorList,ball)
   
---  local cpuPaddle = CpaddleCpu:extend()
---  cpuPaddle:new()
---  table.insert(actorList,cpuPaddle)
---  
---  local playerPaddle = CpaddlePlayer:extend()
---  playerPaddle:new()
---  table.insert(actorList,playerPaddle)
+  local cpuPaddle = CpaddleCpu:extend()
+  cpuPaddle:new()
+  table.insert(actorList,cpuPaddle)
+  
+  local playerPaddle = CpaddlePlayer:extend()
+  playerPaddle:new()
+  table.insert(actorList,playerPaddle)
   
   --Score
   local score = Cscore:extend()
@@ -38,10 +38,13 @@ end
 
 function love.update(dt)
   --Actors update
- for _,v in ipairs(actorList) do
-    v:update(dt)
-  end
+ --for _,v in ipairs(actorList) do v:update(dt) end
+  ball.update(dt, cpuPaddle, playerPaddle)
   
+  cpuPaddle.update(dt, ball)
+
+  playerPaddle.update(dt)
+
   --Score update
   score.update()
 end

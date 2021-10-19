@@ -5,6 +5,7 @@ function Cpaddle_cpu:new(x, y)
 end
 
 function Cpaddle_cpu.update(dt)
+  Cpaddle_cpu.super.update(dt)
 end
 
 

@@ -8,7 +8,7 @@ function Cscore:new()
   playerPoints, cpuPoints = 0,0
 end
 
-function Cscore.update(dt)
+function Cscore:update(dt)
    if ballX<0 then 
       cpuPoints = cpuPoints + 1
       ResetBall()
@@ -18,7 +18,7 @@ function Cscore.update(dt)
     end
 end
 
-function Cscore.draw()
+function Cscore:draw()
   love.graphics.print(playerPoints, font, d.w/4-20, d.h/4-110, 0, 1, 1, 0, 0, 0, 0 )
   love.graphics.print(cpuPoints, font, d.w/4*3-20, d.h/4-110, 0, 1, 1, 0, 0, 0, 0 )
 end

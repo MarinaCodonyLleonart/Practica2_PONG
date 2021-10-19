@@ -1,6 +1,8 @@
 local Vector = Vector or require "src/vector"
-local Object = Object or require "lib/classic"
+local Object = Object or require "lib/classic"--Object=classic file
 local Actor = Object:extend()
+local Cdata = Cdata or require "data"
+local d = Cdata()
 
 function Actor:new(image,x,y,speed,fx,fy)
     self.position = Vector.new(x or 0, y or 0)
@@ -12,6 +14,7 @@ function Actor:new(image,x,y,speed,fx,fy)
     self.origin = Vector.new(self.image:getWidth()/2 ,self.image:getHeight()/2)
     self.height = self.image:getHeight()
     self.width  = self.image:getWidth()
+    
 end
 
 function Actor:update(dt)

@@ -4,15 +4,15 @@ local Cball = Actor:extend() --2: make the hierarchy
 local Vector = Vector or require "src/vector"
 local vector = Vector()
 
-local Cmain = Cmain or require "main" --is used in BallCollisionsPaddle()
-local main = Cmain()
+--local Cmain = Cmain or require "main" --is used in BallCollisionsPaddle()
+--local main = Cmain()
 local Cdata = Cdata or require "data"
 local d = Cdata()
 
 function Cball:new(x, y)
   --Actor:new(image,x,y,speed,fx,fy)
   Cball.super:new("Resources/flowerBall.png",d.ballX,d.ballY,d.ballBaseSpeed,1,0)
-
+  self.scale= vector.new(0.5,0.5)
  -- self.position = vector.new(d.ballX, d.ballY)
   --bx, by = x, y or d.ballX, d.ballY
  -- self.speed = d.ballBaseSpeed
@@ -21,7 +21,7 @@ function Cball:new(x, y)
   --local bAngle = d.ballAngle
 end
 
-function Cball:update(dt)
+function Cball:update(dt,cpuPaddle,playerPaddle)
   BallCollisionsPaddle()
   BallCollisionsScreen()
   --main = require "main"
@@ -56,7 +56,7 @@ function ResetBall()
 
 function BallCollisionsPaddle()
 
-  if self.intersect(self, main.playerPaddle) or self.intersect(self, main.cpuPaddle) then 
+  if self.intersect(self, playerPaddle) or self.intersect(self, cpuPaddle) then 
    self.rot = -(self.rot - math.pi/2) + math.pi/2
   end
   
