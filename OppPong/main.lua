@@ -2,15 +2,17 @@ Object = require "lib/classic"
 local Cdata = Cdata or require "data"
 local Cball = Cball or require "src/ball"
 local Cpaddle = paddle or require "src/paddle"
+local Cpaddle_player = Cpaddle_player or require "src/paddle_player"
+local Cpaddle_cpu = Cpaddle_cpu or require "src/paddle_cpu"
 local Cscore = Cscore or require "src/score"
 
 function love.load(arg)
   if arg[#arg] == "-debug" then require("mobdebug").start() end -- Enable the debugging with ZeroBrane Studio
   
   local d = Cdata()
-  local ball = Cball()
-  local playerPaddle = Cpaddle_player()
-  local cpuPaddle = Cpaddle_cpu()
+  ball = Cball(d.ball0X, d. ball0Y)
+  playerPaddle = Cpaddle_player(d.player0X, d.player0Y)
+  cpuPaddle = Cpaddle_cpu(d.cpu0X, d.cpu0Y)
   
   ball.load()
   playerPaddle.load()
@@ -19,9 +21,9 @@ function love.load(arg)
 end
 
 function love.update(dt)
- ball.update()
- playerPaddle.update()
- cpuPadle.update()
+ ball.update(dt)
+ playerPaddle.update(dt)
+ cpuPadle.update(dt)
 end
 
 function love.draw()

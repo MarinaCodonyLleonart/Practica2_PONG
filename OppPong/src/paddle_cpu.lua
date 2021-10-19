@@ -6,10 +6,10 @@ end
 
 function Cpaddle_cpu.update(dt)
 end
-love.graphics.rectangle("fill", d.playerX, d.playerY, d.paddleWidth, d.paddleHeight)
+
 
 function Cpaddle_player.draw()
-  love.graphics.rectangle("fill", d.cpuX, d.cpuY, d.paddleWidth, d.paddleHeight)
+  love.graphics.rectangle("fill", super.d.cpuX, super.d.cpuY, super.d.paddleWidth, super.d.paddleHeight)
 end
 
 return Cpaddle_cpu

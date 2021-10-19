@@ -25,4 +25,9 @@ function Cpaddle.draw()
   
 end
 
+function getPos()
+  return pX, pY
+end
+
+
 return Cpaddle

@@ -16,7 +16,6 @@ function Cdata:new()
   local paddleBaseSpeed = 300
   local paddleAcc = 0.1
   
-  
   local playerPoints, cpuPoints --player and cpu points in match
   
 end

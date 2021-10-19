@@ -1,32 +1,39 @@
 local Cball = Object:extend()
 local Cdata = Cdata or require "data"
-local d = Cdata()
+
 
 local bx, by
 local bSpeed
 local bAngle
 
+function Cball.load(arg)
+  d = Cdata()
+  --load ball sprite
+  print(d.ballBaseSpeed)
+  bSpeed = d.ballBaseSpeed
+  print(bSpeed)
+  bAngle = d.ballAngle
+  
+end
+
+
 function Cball:new(x, y)
+  
   bx, by = x, y or d.ballX, d.ballY
   
 end
 
-function Cball.load(arg)
-  --load ball sprite
-  bSpeed = d.ballBaseSpeed
-  bAngle = d.ballAngle
-
-end
 
 function Cball.update(dt)
-  bX = bX + ballSpeed*dt*math.cos(ballAngle)
-  bY = bY+ ballSpeed*dt*math.sin(ballAngle)
+  bX = bX + bSpeed *dt*math.cos(bAngle)
+  bY = bY+ bSpeed *dt*math.sin(bAngle)
   
   BallCollisionsPaddle()
   
   BallCollisionsScreen()
-  main = require "main"
   
+  main = require "main"
+  Cpaddle_player.super.getPos()
 end
 
 function Cball.draw()
@@ -34,6 +41,10 @@ function Cball.draw()
 end
 
 --ADDITIONAL BALL FUNCTIONS
+function getPos()
+  return bX, bY
+end
+
 function ResetBall()
       bX, bY = d.w/2, d.h/2
       bSpeed = ballBaseSpeed 

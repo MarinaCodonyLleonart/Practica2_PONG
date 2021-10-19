@@ -9,6 +9,7 @@ function Cpaddle_player.update(dt)
 end
 
 function Cpaddle_player.draw()
-love.graphics.rectangle("fill", d.playerX, d.playerY, d.paddleWidth, d.paddleHeight)
+  
+  love.graphics.rectangle("fill", super.d.playerX, super.d.playerY, super.d.paddleWidth, super.d.paddleHeight)
 end
 return Cpaddle_player
