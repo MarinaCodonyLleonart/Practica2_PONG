@@ -1,7 +1,7 @@
 Object = require "lib/classic"
 local Cdata = Cdata or require "data"
 local Cball = Cball or require "src/ball"
-local Cpaddle = paddle or require "src/paddle"
+--local Cpaddle = paddle or require "src/paddle"
 
 local CpaddlePlayer = paddle or require "src/paddle_player"
 local CpaddleCpu = paddle or require "src/paddle_cpu"
@@ -17,15 +17,18 @@ function love.load(arg)
   --3 actors: ball, cpuPaddle and playerPaddle
   local ball = Cball:extend()
   ball:new()
-  table.insert(actorList,ball)
+  actorList.ball=ball
+  --table.insert(actorList,ball)
   
   local cpuPaddle = CpaddleCpu:extend()
   cpuPaddle:new()
-  table.insert(actorList,cpuPaddle)
+  actorList.cpuPaddle = cpuPaddle
+  --table.insert(actorList,cpuPaddle)
   
   local playerPaddle = CpaddlePlayer:extend()
   playerPaddle:new()
-  table.insert(actorList,playerPaddle)
+  actorList.playerPaddle = playerPaddle
+  --table.insert(actorList,playerPaddle)
   
   --Score
   local score = Cscore:extend()
@@ -39,11 +42,13 @@ end
 function love.update(dt)
   --Actors update
   --for _,v in ipairs(actorList) do v:update(dt) end
-  ball:update(dt, cpuPaddle, playerPaddle)
-  
-  cpuPaddle:update(dt, ball)
+  --actorList[1]:update(dt, cpuPaddle, playerPaddle)
+  actorList.ball:update(dt,actorList.ball, actorList.cpuPaddle, actorList.playerPaddle)
+  actorList.cpuPaddle:update(dt, actorList.ball)
 
-  playerPaddle:update(dt)
+  actorList.playerPaddle:update(dt)
+
+  --playerPaddle:update(dt)
 
   --Score update
   score:update()
@@ -51,7 +56,7 @@ end
 
 function love.draw()
   --Actors
-  for _,v in ipairs(actorList) do
+  for _,v in pairs(actorList) do----ipairs o pairs
     v:draw()
   end
   

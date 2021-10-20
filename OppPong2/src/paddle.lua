@@ -1,13 +1,13 @@
-local Actor = Actor or require "src/actor" --1: Find file of father class
-local Cpaddle = Actor:extend() --2: make the hierarchy
---local Cpaddle = Object:extend()
-local Cdata = Cdata or require "data"
-local d = Cdata()
-
+--local Actor = Actor or require "src/actor" --1: Find file of father class
+--local Cpaddle = Actor:extend() --2: make the hierarchy
+----local Cpaddle = Object:extend()
+--local Cdata = Cdata or require "data"
+--local d = Cdata()
 --global px, py
 --local pSpeed
 
 function Cpaddle:new(x, y)
+  
 end
 
 function Cpaddle.update(dt)
