@@ -1,14 +1,14 @@
 Object = Object or require("lib/classic")
+--Cpaddle_player = Object:extend()
 Cpaddle = paddle or require "src/paddle"
 Cpaddle_player = Cpaddle:extend()
 
 function Cpaddle_player:new(x, y)
-  Cpaddle_player.super.new(x, y)
+  Cpaddle_player.super.new(self)
 end
 
 function Cpaddle_player:update(dt)
   Cpaddle_player.super.update(dt)
-  Keyboard__PlayerPaddle(dt)
   
 end
 
@@ -19,12 +19,12 @@ end
 
 
 
-function Keyboard__PlayerPaddle(dt)
-  if love.keyboard.isDown("up") then
-    super.pY = super.pY - super.pSpeed*dt
-  elseif love.keyboard.isDown("down") then
-    super.pY = super.pY + super.paddleSpeed*dt
-  end
-end
+--function Keyboard__PlayerPaddle(dt)
+--  if love.keyboard.isDown("up") then
+--    super.pY = super.pY - super.pSpeed*dt
+--  elseif love.keyboard.isDown("down") then
+--    super.pY = super.pY + super.paddleSpeed*dt
+--  end
+--end
 
 return Cpaddle_player

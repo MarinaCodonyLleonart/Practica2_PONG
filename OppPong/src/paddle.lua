@@ -7,13 +7,13 @@ local d = require "data"
 
 function Cpaddle:new(x, y)
   self.pX = x
-  self.py = y
-  pSpeed = paddleBaseSpeed
+  self.pY = y
+  self.pSpeed = paddleBaseSpeed
 end
 
 
 function Cpaddle:update(dt)
-  CpuPaddleMovement(dt)
+  KeyboardPaddle(dt)
 end
 
 function Cpaddle:draw()
@@ -26,18 +26,11 @@ function getPos()
   return pX, pY
 end
 
-
-function CpuPaddleMovement(dt)
-  forward = -(Cpaddle.super.pY-ballY)/math.sqrt(ballX^2+ballY^2)
-  cpuY = cpuY + paddleSpeed*dt*forward
-end
-
---just for testing
-function Keyboard__CpuPaddle(dt)
-  if love.keyboard.isDown("w") then
-    cpuY= cpuY - paddleSpeed*dt
-  elseif love.keyboard.isDown("s") then
-    cpuY = cpuY + paddleSpeed*dt
+function KeyboardPaddle(dt)
+  if love.keyboard.isDown("up") then
+    self.pY = self.pY - self.pSpeed*dt
+  elseif love.keyboard.isDown("down") then
+    self.pY = self.pY + self.paddleSpeed*dt
   end
 end
 
