@@ -39,7 +39,7 @@ function love.load(arg)
 
   ---
   --CBall:new(x, y, angle, speed, radius, accel, h, w)
-  ball = CBall(ballX, ballY, ballAngle, ballBaseSpeed, ballRadius, ballAcc, h, w)
+  ball = CBall(ballX, ballY, ballAngle, 150, ballRadius, ballAcc, h, w)
   
   --CPaddle:new(x, y, speed, width, height, isPlayer)
   cpuPaddle = CPaddle(cpuX, cpuY, paddleSpeed, paddleWidth,paddleHeight, false)

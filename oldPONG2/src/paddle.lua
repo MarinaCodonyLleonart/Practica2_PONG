@@ -29,7 +29,7 @@ function CPaddle:update(dt, ball)
     self.y = self.y - self.speed*dt
     elseif love.keyboard.isDown("s") then
     self.y = self.y + self.speed*dt
-  end
+    end
   end
 end
 
@@ -38,24 +38,24 @@ function CPaddle:draw()
 end
 
 -----ADITIONAL not used
-function Keyboard__PlayerPaddle(dt)
-  if love.keyboard.isDown("up") then
-    playerY = playerY - self.speed*dt
-  elseif love.keyboard.isDown("down") then
-    playerY = playerY + self.speed*dt
-  end
-end
---just for testing KEyboardCPU
-function Keyboard__CpuPaddle(dt)
-  if love.keyboard.isDown("w") then
-    cpuY= cpuY - self.speed*dt
-  elseif love.keyboard.isDown("s") then
-    cpuY = cpuY + self.speed*dt
-  end
-end
-
-function CpuPaddleMovement(dt, ball)
-  local forward = -(self.y-ball.y)/math.sqrt(ball.x^2+ball.y^2)
-  self.y = self.y + self.speed*dt*forward
-end
+--function Keyboard__PlayerPaddle(dt)
+--  if love.keyboard.isDown("up") then
+--    playerY = playerY - self.speed*dt
+--  elseif love.keyboard.isDown("down") then
+--    playerY = playerY + self.speed*dt
+--  end
+--end
+----just for testing KEyboardCPU
+--function Keyboard__CpuPaddle(dt)
+--  if love.keyboard.isDown("w") then
+--    cpuY= cpuY - self.speed*dt
+--  elseif love.keyboard.isDown("s") then
+--    cpuY = cpuY + self.speed*dt
+--  end
+--end
+--
+--function CpuPaddleMovement(dt, ball)
+--  local forward = -(self.y-ball.y)/math.sqrt(ball.x^2+ball.y^2)
+--  self.y = self.y + self.speed*dt*forward
+--end
 return CPaddle

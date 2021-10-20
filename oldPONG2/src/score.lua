@@ -18,6 +18,9 @@ self.w = w
 end
 
 function CScore:update(dt, ball)
+  
+  playerPoints = ball.bplayerPoints
+  cpuPoints = ball.bcpuPoints
    --if ball.x < 0 then 
    --  cpuPoints = cpuPoints + 1
    --  --ball.ResetBall()
