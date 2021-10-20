@@ -5,6 +5,7 @@ CPaddle = Object:extend()
 function CPaddle:new(x, y, speed, width, height, isPlayer)
   self.x = x
   self.y = y
+  self.baseSpeed = speed
   self.speed = speed
   self.width = width
   self.height = height
