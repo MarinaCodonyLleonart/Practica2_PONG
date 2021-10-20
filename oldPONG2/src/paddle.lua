@@ -23,7 +23,7 @@ function CPaddle:update(dt, ball)
   --CpuPaddleMovement
     local forward = -(self.y - ball.y) / math.sqrt(ball.x^2 + ball.y^2)
     self.y = self.y + self.speed * dt * forward
-    
+    --KeyboardControlTestingCPU
     if love.keyboard.isDown("w") then
     self.y = self.y - self.speed*dt
     elseif love.keyboard.isDown("s") then
