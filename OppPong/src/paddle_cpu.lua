@@ -1,9 +1,9 @@
-local Object = Object or require "lib/classic"
+Object = Object or require("lib/classic")
 Cpaddle = paddle or require "src/paddle"
 Cpaddle_cpu = Cpaddle:extend()
 
-function Cpaddle_cpu:new()
-  Cpaddle_cpu.super.new(cpu0X, cpu0Y)
+function Cpaddle_cpu:new(x, y)
+  Cpaddle_cpu.super.new(x, y)
 end
 
 

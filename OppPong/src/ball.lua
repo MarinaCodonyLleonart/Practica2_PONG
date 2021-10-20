@@ -3,23 +3,18 @@ local Cball = Object:extend()
 --local Cdata = Cdata or require "data"
 local d = require "data"
 
---local m = require "main"
---print(m.paddlePlayer.pX)
 
-local bX, bY = 0 ,0
-local bSpeed = 0
-local bAngle = 0
-
-function Cball:new()
+function Cball:new(x, y, speed, andle)
   --d = Cdata()
   
-  bX, bY = ball0X, ball0Y
+  self.bX = x
+  self.bY = y
   print(bx)
   --load ball sprite
   print(ballBaseSpeed)
-  bSpeed = 150
+  self.bSpeed = speed
   print(bSpeed)
-  bAngle = math.pi/6
+  self.bAngle = angle
   
 end
 
