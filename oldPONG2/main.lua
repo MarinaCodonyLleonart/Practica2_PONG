@@ -23,31 +23,15 @@ local d = CData()
 
 function love.load(arg)
   if arg[#arg] == "-debug" then require("mobdebug").start() end -- Enable the debugging with ZeroBrane Studio
-  
-  image = love.graphics.newImage ("Resources/flowerBall.png")
-  
-  w, h = love.graphics.getDimensions() -- Get the screen width and height
- 
-  ballX, ballY = w/2, h/2
-  ballRadius = 10
-  ballAngle = math.pi/4
-  ballBaseSpeed = 150
-  ballAcc = 0.1
- 
-  playerX, playerY = 20, h/2-50
-  cpuX, cpuY =  w-30, h/2-50
- 
-  paddleWidth = 10
-  paddleHeight = 100
-  paddleSpeed = 300
 
   ---
+  
   --CBall:new(x, y, angle, speed, radius, accel, h, w)
-  ball = CBall(ballX, ballY, ballAngle, ballBaseSpeed, ballRadius, ballAcc, h, w, image )
+  ball = CBall(ballX, ballY, ballAngle, ballBaseSpeed, ballRadius, ballAcc, h, w, imageBall )
   
   --CPaddle:new(x, y, speed, width, height, isPlayer)
-  cpuPaddle = CPaddle(cpuX, cpuY, paddleSpeed, paddleWidth,paddleHeight, false)
-  playerPaddle = CPaddle(playerX, playerY, paddleSpeed, paddleWidth, paddleHeight, true)
+  cpuPaddle = CPaddle(cpuX, cpuY, paddleSpeed, paddleWidth,paddleHeight, false, imageBlue )
+  playerPaddle = CPaddle(playerX, playerY, paddleSpeed, paddleWidth, paddleHeight, true, imageRed)
   
   --CScore:new(x, y, size, w, h)
   scorePlayer = CScore(w/4-20, h/4-110, 80, w, h)
@@ -67,13 +51,13 @@ function love.update(dt)
   
   scoreCpu:update(dt, ball)
   scorePlayer:update(dt, ball)
-
-  -----------
+  
 end
 
 function love.draw()
-  --background
+  --background: love.graphics.line( x1, y1, x2, y2, ... )
   love.graphics.line(w/2, 0, w/2,h)
+  
   ---
   ball:draw()
   

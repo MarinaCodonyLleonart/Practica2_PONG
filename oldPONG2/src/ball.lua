@@ -28,7 +28,7 @@ function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
   self.y = self.y + self.speed * dt * math.sin(self.angle)
   
   --BallCollisionsScreen(h)
-  if self.y<=0 or self.y>=self.h then
+  if self.y <= 0 or self.y >= self.h then
     self.angle = -(-self.angle - math.pi/4) + math.pi/4
   end
   
