@@ -1,7 +1,9 @@
-CBall = CBall or require("src/ball")
-CPaddle = CPaddle or require("src/paddle")
-CScore = CScore or require("src/score")
-CData = CData or require("data")
+local CBall = CBall or require("src/ball")
+local CPaddle = CPaddle or require("src/paddle")
+local CScore = CScore or require("src/score")
+local CStartMenu = CStartMenu or require("src/startMenu")
+local CData = CData or require("data")
+
 
 local d = CData()
 
@@ -24,7 +26,7 @@ local d = CData()
 function love.load(arg)
   if arg[#arg] == "-debug" then require("mobdebug").start() end -- Enable the debugging with ZeroBrane Studio
 
-  ---
+  stateMachine = "start_menu"
   
   --CBall:new(x, y, angle, speed, radius, accel, h, w)
   ball = CBall(ballX, ballY, ballAngle, ballBaseSpeed, ballRadius, ballAcc, h, w, imageBall )
@@ -37,34 +39,49 @@ function love.load(arg)
   scorePlayer = CScore(w/4-20, h/4-110, 80, w, h)
   scoreCpu = CScore(w/4*3-20, h/4-110, 80, w, h)
 
-  -----
+  --CStartMenu
+  sMenu = CStartMenu()
 
 
 end
 
 function love.update(dt)
   
-  ball:update(dt, playerPaddle, cpuPaddle, scoreCpu, scorePlayer)
-  
-  cpuPaddle:update(dt, ball)
-  playerPaddle:update(dt, ball)
-  
-  scoreCpu:update(dt, ball)
-  scorePlayer:update(dt, ball)
+  if stateMachine == "start_menu" then
+    sMenu:update(dt, stateMachine)
+    
+  elseif stateMachine == "game" then
+    ball:update(dt, playerPaddle, cpuPaddle, scoreCpu, scorePlayer)
+    
+    cpuPaddle:update(dt, ball)
+    playerPaddle:update(dt, ball)
+    
+    scoreCpu:update(dt, ball)
+    scorePlayer:update(dt, ball)
+    
+  end
   
 end
 
 function love.draw()
-  --background: love.graphics.line( x1, y1, x2, y2, ... )
-  love.graphics.line(w/2, 0, w/2,h)
   
-  ---
-  ball:draw()
+  if stateMachine == "start_menu" then
+    sMenu:draw()
+    
+  elseif stateMachine == "game" then
+    --background: love.graphics.line( x1, y1, x2, y2, ... )
+    love.graphics.line(w/2, 0, w/2,h)
+    
+    ---
+    ball:draw()
+    
+    cpuPaddle:draw()
+    playerPaddle:draw()
+    
+    --CScore:draw(isPlayer)
+    scoreCpu:draw(false)
+    scorePlayer:draw(true)
+    
+  end
   
-  cpuPaddle:draw()
-  playerPaddle:draw()
-  
-  --CScore:draw(isPlayer)
-  scoreCpu:draw(false)
-  scorePlayer:draw(true)
 end
