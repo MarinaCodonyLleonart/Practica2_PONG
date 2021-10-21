@@ -1,7 +1,4 @@
-Object = Object or require ("lib/classic")
-Data = Object:extend()
 
-function Data:new()
  
 local ballX, ballY = w/2, h/2
 local ballRadius = 10
@@ -15,7 +12,3 @@ local cpuX, cpuY =  w-30, h/2-50
 local paddleWidth = 10
 local paddleHeight = 100
 local paddleSpeed = 300
-
-end
-
-return Data

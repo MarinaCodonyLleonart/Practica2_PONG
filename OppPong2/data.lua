@@ -1,3 +1,4 @@
+Object = Object or require ("lib/classic")
 local Cdata = Object:extend()
 
 function Cdata:new()
@@ -22,3 +23,5 @@ function Cdata:new()
 end
 
 return Cdata
+
+
