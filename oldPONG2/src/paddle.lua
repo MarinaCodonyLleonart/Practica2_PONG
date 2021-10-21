@@ -16,6 +16,7 @@ function CPaddle:new(x, y, speed, width, height, isPlayer)
 end
 
 function CPaddle:update(dt, ball)
+  
   if self.isPlayer then
   --Keyboard__PlayerPaddle
     if love.keyboard.isDown("up") then
@@ -23,6 +24,7 @@ function CPaddle:update(dt, ball)
     elseif love.keyboard.isDown("down") then
       self.y = self.y + self.speed * dt
     end
+    
   else
   --CpuPaddleMovement
     local forward = -(self.y - ball.y) / math.sqrt(ball.x^2 + ball.y^2)
@@ -34,6 +36,7 @@ function CPaddle:update(dt, ball)
     self.y = self.y + self.speed*dt
     end
   end
+  
 end
 
 function CPaddle:draw()

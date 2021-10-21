@@ -5,43 +5,45 @@ CData = CData or require("data")
 
 local d = CData()
 
-local w, h 
-
-local ballX, ballY 
-local ballRadius
-local ballSpeed
-local ballAngle
-
-
-local playerX, playerY, cpuX, cpuY 
-
-local paddleWidth 
-local paddleHeight 
-local paddleSpeed
+--local w, h 
+--
+--local ballX, ballY 
+--local ballRadius
+--local ballSpeed
+--local ballAngle
+--
+--
+--local playerX, playerY, cpuX, cpuY 
+--
+--local paddleWidth 
+--local paddleHeight 
+--local paddleSpeed
 
 
 
 function love.load(arg)
   if arg[#arg] == "-debug" then require("mobdebug").start() end -- Enable the debugging with ZeroBrane Studio
   
+  image = love.graphics.newImage ("Resources/flowerBall.png")
+  
   w, h = love.graphics.getDimensions() -- Get the screen width and height
-  --
-   ballX, ballY = w/2, h/2
-   ballRadius = 10
-   ballAngle = math.pi/4
-   ballBaseSpeed = 150
-   ballAcc = 0.1
-
-   playerX, playerY = 20, h/2-50
-   cpuX, cpuY =  w-30, h/2-50
-
-   paddleWidth = 10
-   paddleHeight = 100
-   paddleSpeed = 300
+ 
+  ballX, ballY = w/2, h/2
+  ballRadius = 10
+  ballAngle = math.pi/4
+  ballBaseSpeed = 150
+  ballAcc = 0.1
+ 
+  playerX, playerY = 20, h/2-50
+  cpuX, cpuY =  w-30, h/2-50
+ 
+  paddleWidth = 10
+  paddleHeight = 100
+  paddleSpeed = 300
 
   ---
   --CBall:new(x, y, angle, speed, radius, accel, h, w)
-  ball = CBall(ballX, ballY, ballAngle, ballBaseSpeed, ballRadius, ballAcc, h, w)
+  ball = CBall(ballX, ballY, ballAngle, ballBaseSpeed, ballRadius, ballAcc, h, w, image )
   
   --CPaddle:new(x, y, speed, width, height, isPlayer)
   cpuPaddle = CPaddle(cpuX, cpuY, paddleSpeed, paddleWidth,paddleHeight, false)

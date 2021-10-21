@@ -5,16 +5,21 @@ CBall = Object:extend()
 
 local d = CData()
 
-function CBall:new(x, y, angle, speed, radius, accel, hScreen, wScreen)
+function CBall:new(x, y, angle, speed, radius, accel, hScreen, wScreen, image)
   self.x = x
   self.y = y
   self.angle = angle
   self.speed = speed
+  self.baseSpeed = speed
   self.radius = radius
   self.acceleration = accel
   self.h = hScreen
   self.w = wScreen
   self.bcpuPoints, self.bplayerPoints = 0,0 --maybe innecesary
+  
+  self.image = image
+  self.height = self.image:getHeight()
+  self.width  = self.image:getWidth()
 end
 
 function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
@@ -23,7 +28,7 @@ function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
   self.y = self.y + self.speed * dt * math.sin(self.angle)
   
   --BallCollisionsScreen(h)
-  if self.y<0 or self.y>self.h then
+  if self.y<=0 or self.y>=self.h then
     self.angle = -(-self.angle - math.pi/4) + math.pi/4
   end
   
@@ -39,18 +44,24 @@ function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
     self.bcpuPoints = self.bcpuPoints + 1 --points
     --ResetBall()
     self.x, self.y = self.w/2, self.h/2
-    self.speed = self.speed 
+    self.speed = self.baseSpeed
     
   elseif self.x > self.w then 
     self.bplayerPoints = self.bplayerPoints + 1 --points
     --ResetBall()
     self.x, self.y = self.w/2, self.h/2
-    self.speed = self.speed 
+    self.speed = self.baseSpeed
   end
 end
 
 function CBall:draw()
-  love.graphics.circle("fill", self.x, self.y, self.radius)
+  --love.graphics.circle("fill", self.x, self.y, self.radius)
+  local sx = 0.2
+  local sy = 0.2
+  local ox = self.width/2
+  local oy = self.height/2
+  --love.graphics.draw( drawable, x, y, r, sx, sy, ox, oy, kx, ky )
+  love.graphics.draw(self.image, self.x, self.y, self.angle, sx, sy, ox, oy, 0, 0 )
 end
 -----METHODS OF BALL UPDATE
 --function ResetBall()--Load the ball in the init point and v
