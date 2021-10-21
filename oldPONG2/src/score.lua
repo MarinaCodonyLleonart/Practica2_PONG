@@ -1,13 +1,16 @@
 Object = Object or require("lib/classic")
+CData = CData or require("data")
 
 CScore = Object:extend()
+
+local d = CData()
 
 local font
 local playerPoints, cpuPoints 
 
 function CScore:new(x, y, size, w, h)
 --font = love.graphics.newFont( "pong.ttf", 80, "normal", love.graphics.getDPIScale(0))
-font = love.graphics.newFont( "pong.ttf", size, "normal", love.graphics.getDPIScale(0))
+font = love.graphics.newFont( "Resources/pong.ttf", size, "normal", love.graphics.getDPIScale(0))
 playerPoints, cpuPoints = 0, 0  
 
 self.x = x
@@ -34,9 +37,12 @@ function CScore:update(dt, ball)
    --end
 end
 
-function CScore:draw()
-  love.graphics.print(playerPoints, font, self.x, self.y, 0, 1, 1, 0, 0, 0, 0 )
-  love.graphics.print(cpuPoints, font, self.x, self.y, 0, 1, 1, 0, 0, 0, 0 )
+function CScore:draw(isPlayer)
+  if isPlayer then
+    love.graphics.print(playerPoints, font, self.x, self.y, 0, 1, 1, 0, 0, 0, 0 )
+  else
+    love.graphics.print(cpuPoints, font, self.x, self.y, 0, 1, 1, 0, 0, 0, 0 )
+  end
 end
 
 return CScore

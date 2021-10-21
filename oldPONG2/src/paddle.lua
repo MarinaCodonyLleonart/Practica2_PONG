@@ -1,6 +1,9 @@
 Object = Object or require("lib/classic")
+CData = CData or require("data")
 
 CPaddle = Object:extend()
+
+local d = CData()
 
 function CPaddle:new(x, y, speed, width, height, isPlayer)
   self.x = x

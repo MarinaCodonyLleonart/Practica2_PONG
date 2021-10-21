@@ -1,7 +1,9 @@
 CBall = CBall or require("src/ball")
 CPaddle = CPaddle or require("src/paddle")
 CScore = CScore or require("src/score")
---CData = CData or require("data")
+CData = CData or require("data")
+
+local d = CData()
 
 local w, h 
 
@@ -39,7 +41,7 @@ function love.load(arg)
 
   ---
   --CBall:new(x, y, angle, speed, radius, accel, h, w)
-  ball = CBall(ballX, ballY, ballAngle, 150, ballRadius, ballAcc, h, w)
+  ball = CBall(ballX, ballY, ballAngle, ballBaseSpeed, ballRadius, ballAcc, h, w)
   
   --CPaddle:new(x, y, speed, width, height, isPlayer)
   cpuPaddle = CPaddle(cpuX, cpuY, paddleSpeed, paddleWidth,paddleHeight, false)
@@ -76,27 +78,7 @@ function love.draw()
   cpuPaddle:draw()
   playerPaddle:draw()
   
-  scoreCpu:draw()
-  scorePlayer:draw()
+  --CScore:draw(isPlayer)
+  scoreCpu:draw(false)
+  scorePlayer:draw(true)
 end
-
-
-
-
-
---TODO 19
-function BallCollisionsPaddle()
-  if (ballY>playerY and ballY<playerY+paddleHeight and ballX<playerX+paddleWidth)
-    or (ballY>cpuY and ballY<cpuY+paddleHeight and ballX>cpuX-paddleWidth) then
-    ballAngle = -(ballAngle - math.pi/2) + math.pi/2
-    ballSpeed = ballSpeed + ballSpeed*paddleAcc
-  end
-end
-
---TODO 20
-function BallCollisionsScreen()
-  if ballY<0 or ballY>h then
-    ballAngle = -(-ballAngle - math.pi/4) + math.pi/4
-  end
-end
-

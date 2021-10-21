@@ -1,8 +1,9 @@
---Data = Data or require("data")
---Cball = Data:extend()
 Object = Object or require("lib/classic")
+CData = CData or require("data")
 
 CBall = Object:extend()
+
+local d = CData()
 
 function CBall:new(x, y, angle, speed, radius, accel, hScreen, wScreen)
   self.x = x
@@ -37,12 +38,12 @@ function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
     self.bcpuPoints = self.bcpuPoints + 1
     --ResetBall()
     self.x, self.y = self.w/2, self.h/2
-    self.speed = self.baseSpeed 
+    self.speed = self.speed 
   elseif self.x > self.w then 
     self.bplayerPoints = self.bplayerPoints + 1
     --ResetBall()
     self.x, self.y = self.w/2, self.h/2
-    self.speed = self.baseSpeed 
+    self.speed = self.speed 
   end
 end
 
