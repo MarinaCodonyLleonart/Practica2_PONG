@@ -24,17 +24,18 @@ function CScore:update(dt, ball)
   
   playerPoints = ball.bplayerPoints
   cpuPoints = ball.bcpuPoints
-   --if ball.x < 0 then 
-   --  cpuPoints = cpuPoints + 1
-   --  --ball.ResetBall()
-   --    ball.x, ball.y = w/2, h/2
-   --    ball.speed = speed 
-   --elseif ball.x > self.w then 
-   --  playerPoints = playerPoints + 1
-   --  --ball.ResetBall()
-   --    ball.x, ball.y = self.w/2, self.h/2
-   --    ball.speed = ball.baseSpeed 
-   --end
+  
+  --if ball.x < 0 then 
+  --  cpuPoints = cpuPoints + 1
+  --  --ball.ResetBall()
+  --    ball.x, ball.y = w/2, h/2
+  --    ball.speed = 150 
+  --elseif ball.x > self.w then 
+  --  playerPoints = playerPoints + 1
+  --  --ball.ResetBall()
+  --    ball.x, ball.y = self.w/2, self.h/2
+  --    ball.speed = 150 
+  --end
 end
 
 function CScore:draw(isPlayer)

@@ -14,7 +14,7 @@ function CBall:new(x, y, angle, speed, radius, accel, hScreen, wScreen)
   self.acceleration = accel
   self.h = hScreen
   self.w = wScreen
-  self.bcpuPoints, self.bplayerPoints = 0,0
+  self.bcpuPoints, self.bplayerPoints = 0,0 --maybe innecesary
 end
 
 function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
@@ -33,14 +33,16 @@ function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
     self.angle = -(self.angle - math.pi/2) + math.pi/2
     self.speed = self.speed + self.speed * self.acceleration
   end
-   --Lateral sides of the screen
+  
+   --Lateral sides of the screen --POINTS
   if self.x < 0 then 
-    self.bcpuPoints = self.bcpuPoints + 1
+    self.bcpuPoints = self.bcpuPoints + 1 --points
     --ResetBall()
     self.x, self.y = self.w/2, self.h/2
     self.speed = self.speed 
+    
   elseif self.x > self.w then 
-    self.bplayerPoints = self.bplayerPoints + 1
+    self.bplayerPoints = self.bplayerPoints + 1 --points
     --ResetBall()
     self.x, self.y = self.w/2, self.h/2
     self.speed = self.speed 
