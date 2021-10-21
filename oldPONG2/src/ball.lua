@@ -33,8 +33,17 @@ function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
   end
   
   --BallCollisionsPaddle(player, cpu)
+  --[[
   if (self.y > player.y and self.y < player.y + player.height and self.x < player.x + player.width)
     or (self.y > cpu.y and self.y < cpu.y + cpu.height and self.x > cpu.x-cpu.width) then
+    self.angle = -(self.angle - math.pi/2) + math.pi/2
+    self.speed = self.speed + self.speed * self.acceleration
+  end
+  ]]--
+  
+  --Radi colisió arreglat
+  if (self.y > (player.y-self.radius-20) and self.y < (player.y + player.height -self.radius-20) and self.x < (player.x + player.width - self.radius-20))
+    or (self.y > (cpu.y-self.radius-20) and self.y < cpu.y + cpu.height-self.radius-20) and self.x > (cpu.x-cpu.width+self.radius+20) then
     self.angle = -(self.angle - math.pi/2) + math.pi/2
     self.speed = self.speed + self.speed * self.acceleration
   end
