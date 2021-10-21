@@ -1,9 +1,11 @@
 Object = Object or require("lib/classic")
 CData = CData or require("data")
+CSound = CSound or require("sound")
 
 CBall = Object:extend()
 
 local d = CData()
+local s = CSound()
 
 function CBall:new(x, y, angle, speed, radius, accel, hScreen, wScreen, image)
   self.x = x
@@ -28,7 +30,7 @@ function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
   self.y = self.y + self.speed * dt * math.sin(self.angle)
   
   --BallCollisionsScreen(h)
-  if self.y <= 0 or self.y >= self.h then
+  if self.y-self.radius-20 <= 0 or self.y+self.radius+20 >= self.h then
     self.angle = -(-self.angle - math.pi/4) + math.pi/4
   end
   
@@ -49,13 +51,13 @@ function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
   end
   
    --Lateral sides of the screen --POINTS
-  if self.x < 0 then 
+  if self.x-self.radius-20 < 0 then 
     self.bcpuPoints = self.bcpuPoints + 1 --points
     --ResetBall()
     self.x, self.y = self.w/2, self.h/2
     self.speed = self.baseSpeed
     
-  elseif self.x > self.w then 
+  elseif self.x+self.radius+20> self.w then 
     self.bplayerPoints = self.bplayerPoints + 1 --points
     --ResetBall()
     self.x, self.y = self.w/2, self.h/2
