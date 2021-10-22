@@ -31,6 +31,7 @@ function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
   
   --BallCollisionsScreen(h)
   if self.y-self.radius-20 <= 0 or self.y+self.radius+20 >= self.h then
+    s.ballcollision()
     self.angle = -(-self.angle - math.pi/4) + math.pi/4
   end
   
@@ -44,20 +45,23 @@ function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
   ]]--
   
   --Radi colisió arreglat
-  if (self.y > (player.y-self.radius-20) and self.y < (player.y + player.height -self.radius-20) and self.x < (player.x + player.width - self.radius-20))
+  if (self.y > (player.y-self.radius-20) and self.y < (player.y + player.height +self.radius+20) and self.x < (player.x + player.width - self.radius-20))
     or (self.y > (cpu.y-self.radius-20) and self.y < cpu.y + cpu.height-self.radius-20) and self.x > (cpu.x-cpu.width+self.radius+20) then
-    self.angle = -(self.angle - math.pi/2) + math.pi/2
-    self.speed = self.speed + self.speed * self.acceleration
+      s.ballcollision()
+      self.angle = -(self.angle - math.pi/2) + math.pi/2
+      self.speed = self.speed + self.speed * self.acceleration
   end
   
    --Lateral sides of the screen --POINTS
   if self.x-self.radius-20 < 0 then 
+    s.scoring()
     self.bcpuPoints = self.bcpuPoints + 1 --points
     --ResetBall()
     self.x, self.y = self.w/2, self.h/2
     self.speed = self.baseSpeed
     
   elseif self.x+self.radius+20> self.w then 
+    s.scoring()
     self.bplayerPoints = self.bplayerPoints + 1 --points
     --ResetBall()
     self.x, self.y = self.w/2, self.h/2
