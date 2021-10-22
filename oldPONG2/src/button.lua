@@ -32,11 +32,4 @@ function Button:draw()
     love.graphics.rectangle("line", self.X, self.Y, self.W, self.H)
 end
 
-function Button.getX()
-  x = self.x
-  return x 
-end
-  
-
-
 return Button

@@ -1,6 +1,7 @@
 Object = Object or require("lib/classic")
 CData = CData or require("data")
 CSound = CSound or require("sound")
+CAnimatedSprite = CAnimatedSprite or require("animatedSprite")
 
 CBall = Object:extend()
 
@@ -13,15 +14,24 @@ function CBall:new(x, y, angle, speed, radius, accel, hScreen, wScreen, image)
   self.angle = angle
   self.speed = speed
   self.baseSpeed = speed
-  self.radius = radius
+  self.radius = radius --should be diameter of sprite/2
   self.acceleration = accel
   self.h = hScreen
   self.w = wScreen
   self.bcpuPoints, self.bplayerPoints = 0,0 --maybe innecesary
   
-  self.image = image
+  self.image = image --ANIMACIO: Posa sprite aquí
   self.height = self.image:getHeight()
   self.width  = self.image:getWidth()
+  
+  --[[ maybe include in dataS
+  self.numFrames
+  self.actFrame
+  self.fr 
+  ]]--
+  --ANIMACIONS
+  self.sprite =CAnimatedSprite(self.image, numframes)
+  
 end
 
 function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)

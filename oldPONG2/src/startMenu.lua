@@ -56,7 +56,7 @@ function StartMenu:draw()
   --love.graphics.print(self.gameTitle, self.font_heading, w/2-210, h/4, 0, 1, 1, 0, 0, 0, 0 )
   local ox = self.font_subheading:getWidth( self.credits ) / 2
   local oy = self.font_subheading:getHeight( self.credits ) / 2
-  love.graphics.print(self.credits, self.font_subheading, w-ox-20, h-oy-10, 0, 1, 1, ox, oy, 0, 0 )
+  love.graphics.print(self.credits, self.font_subheading, w-ox-20, h-oy-10, 0, 1, 1, ox, oy, 0, 0 ) --hardcodeado
   
   --BUTTONS
   for _, b in pairs(buttonList) do
@@ -66,3 +66,11 @@ function StartMenu:draw()
 end
 
 return StartMenu
+
+--taula nom amb punts
+-- un arxou per noms i un altre per numeros
+
+--return taula
+--modificar taula a main si jugador guanya
+--retornar taula canviada
+--io.write("namefile","w")
