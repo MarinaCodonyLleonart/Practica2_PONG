@@ -3,7 +3,7 @@ local SoundLib = Object:extend()
 
 function SoundLib:new()
 
-  ballCollision = love.audio.newSource("resources/grass_sound(cut).wav", "static")
+  ballCollision = love.audio.newSource("resources/grass_sound.wav", "static")
   scoring = love.audio.newSource("resources/ItemPickup.wav", "static")
   
   ballCollision:setVolume(1)
