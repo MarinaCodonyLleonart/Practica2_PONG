@@ -2,12 +2,16 @@ Object = Object or require ("lib/classic")
 local Cdata = Object:extend()
 
 function Cdata:new()
-  
+  --images
   imageBall = love.graphics.newImage ("Resources/flowerBall.png")
   imageBlue = love.graphics.newImage ("Resources/bluePaddle.png")
   imageRed = love.graphics.newImage ("Resources/redPaddle.png")
+  imageMenuBackground = love.graphics.newImage ("Resources/menuBackground.jpg")
+  imageBackground = love.graphics.newImage ("Resources/background.jpg")
+  imageButton = love.graphics.newImage ("Resources/button.png")
+  imageButtonPressed = love.graphics.newImage ("Resources/buttonPressed.png")
 
-
+  
   w, h = love.graphics.getDimensions() -- Get the screen width and height
 
   ballX, ballY = w/2, h/2

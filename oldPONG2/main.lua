@@ -36,8 +36,8 @@ function love.load(arg)
   playerPaddle = CPaddle(playerX, playerY, paddleSpeed, paddleWidth, paddleHeight, true, imageRed)
   
   --CScore:new(x, y, size, w, h)
-  scorePlayer = CScore(w/4-20, h/4-110, 80, w, h)
-  scoreCpu = CScore(w/4*3-20, h/4-110, 80, w, h)
+  scorePlayer = CScore(w/4, h/12, 80, w, h)
+  scoreCpu = CScore(w/4*3, h/12, 80, w, h)
 
   --CStartMenu
   sMenu = CStartMenu()
@@ -70,6 +70,7 @@ function love.draw()
     
   elseif stateMachine == "game" then
     --background: love.graphics.line( x1, y1, x2, y2, ... )
+    love.graphics.draw(imageBackground, 0, 0, 0, 1, 1, 0, 0, 0, 0 )
     love.graphics.line(w/2, 0, w/2,h)
     
     ---
