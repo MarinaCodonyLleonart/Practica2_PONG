@@ -21,13 +21,13 @@ function CBall:new(x, y, angle, speed, radius, accel, hScreen, wScreen, image)
   self.bcpuPoints, self.bplayerPoints = 0,0 --maybe innecesary
   --animatedFlowerBall = love.graphics.newImage ("Resources/FlowerBallAnim.png")
 
-  self.image = animatedFlowerBall --ANIMACIO: Posa sprite aquí
-  self.numFrames = 3 --suposo que sha d descomentar
+  --ANIMACIÓ
+  self.image = animatedFlowerBall 
+  self.numFrames = 3 
   self.height = self.image:getHeight()
-  self.width  = self.image:getWidth() --/numFrames
+  self.width  = self.image:getWidth()/self.numFrames
   
-  --ANIMACIONS: descomentar quan posis sprite
-  self.sprite = CAnimatedSprite(self.image, self.numFrames)
+  sprite = CAnimatedSprite(self.image, self.numFrames)
   
 end
 

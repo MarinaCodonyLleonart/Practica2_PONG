@@ -1,7 +1,7 @@
 Object = Object or require("lib/classic")
 CData = CData or require("data")
 
-animatedSprite = Object:extend()
+AnimatedSprite = Object:extend()
 
 function AnimatedSprite:new(image,nFrames)
   self.numFrames = nFrames  
@@ -35,9 +35,10 @@ function AnimatedSprite.getActFrameQuad()
 end
   
 
-function AnimatedSpritegetQuadsTable()
+function AnimatedSprite.getQuadsTable()
   return self.frames 
 end
 
 
-  
+
+return animatedSprite
