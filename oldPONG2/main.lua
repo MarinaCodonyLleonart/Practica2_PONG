@@ -3,6 +3,7 @@ local CPaddle = CPaddle or require("src/paddle")
 local CScore = CScore or require("src/score")
 local CStartMenu = CStartMenu or require("src/startMenu")
 local CData = CData or require("data")
+local CAnimatedSprite = CAnimatedSprite or require("src/animatedSprite")
 
 local d = CData()
 

@@ -8,7 +8,7 @@ CBall = Object:extend()
 local d = CData()
 local s = CSound()
 
-function CBall:new(x, y, angle, speed, radius, accel, hScreen, wScreen, image)
+function CBall:new(x, y, angle, speed, radius, accel, hScreen, wScreen, bimage)
   self.x = x
   self.y = y
   self.angle = angle
@@ -22,7 +22,7 @@ function CBall:new(x, y, angle, speed, radius, accel, hScreen, wScreen, image)
   --animatedFlowerBall = love.graphics.newImage ("Resources/FlowerBallAnim.png")
 
   --ANIMACIÓ
-  self.image = animatedFlowerBall 
+  self.image = bimage
   self.numFrames = 3 
   self.height = self.image:getHeight()
   self.width  = self.image:getWidth()/self.numFrames

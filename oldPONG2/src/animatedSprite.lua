@@ -1,31 +1,36 @@
 Object = Object or require("lib/classic")
+AnimatedSprite = Object:extend()
 CData = CData or require("data")
 
-AnimatedSprite = Object:extend()
 
-function AnimatedSprite:new(image,nFrames)
-  self.numFrames = nFrames  
+function AnimatedSprite:new(nimage,nFrames)
+  print("here")
+  self.numFrames = nFrames
   self.frames = {}
   self.actFrameCount = 0
-  self.image = image
+  self.image = nimage
   
-  local x0 = 0
-  local y0 = 0
-  local width = self.image:getWidth()
-  local height = self.image:getHeight()
+  self. x0 = 0
+  self. y0 = 0
+  self.width = nimage:getWidth()
+  self. height = nimage:getHeight()
   
-  for i=1, numFrames do
-    self.frames[i] = love.graphics.newQuad( x0, y0, width/nFrames, height, width, height)
+  for i=1, self.numFrames do
+    self.frames[i] = love.graphics.newQuad( 0, 0, self.width/nFrames, self.height, self.width, self.height)
   end
   
 end
 
 function AnimatedSprite:update(dt)
-  if self.actFrameCount <= numFrames then
+  if self.actFrameCount <= self.numFrames then
     self.actFrameCount = self.actFrame + animationFr*dt
   else
     self.actFrame =1
   end
+  
+end
+
+function AnimatedSprite:draw()
   
 end
 
