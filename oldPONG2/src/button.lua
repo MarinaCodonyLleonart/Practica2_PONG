@@ -33,6 +33,7 @@ function Button:draw()
   love.graphics.print(self.txt, font_buttontxt, xpos, ypos, 0, 1, 1, ox, oy, 0, 0 )
 
   love.graphics.rectangle("line", self.X, self.Y, self.W, self.H)
+  --quan no s'hagi de canviar res més de botons borrem el rectangle blanc k queda feo
 end
 
 return Button

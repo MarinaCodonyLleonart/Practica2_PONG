@@ -4,7 +4,7 @@ local Cdata = Object:extend()
 function Cdata:new()
   
   gameStates = {"start_menu", "single", "multi", "game_over", "restart", "exit"}
-  menuPanels = {"home","mode_select"}
+  menuPanels = {"home","mode_select","game_over"}
   
   gameTitle = "2021 Pong Game"
   credits = "by Eli & Marina"
@@ -40,6 +40,7 @@ function Cdata:new()
   font_heading = love.graphics.newFont( "resources/pong.ttf", 50, "normal", love.graphics.getDPIScale(0) )
   font_subheading = love.graphics.newFont( "resources/Poppins-Bold.ttf",25, "normal", love.graphics.getDPIScale(0) )
   font_buttontxt = love.graphics.newFont( "resources/Poppins-Bold.ttf",30, "normal", love.graphics.getDPIScale(0) )
+  font_score = love.graphics.newFont( "Resources/Poppins-Bold.ttf", 80, "normal", love.graphics.getDPIScale(0)) -- put in data
   
  
 end

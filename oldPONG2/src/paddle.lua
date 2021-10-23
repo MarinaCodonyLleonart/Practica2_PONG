@@ -20,7 +20,7 @@ function CPaddle:new(x, y, speed, width, height, isPlayer, image)
 end
 
 function CPaddle:update(dt, ball)
-  print(stateMachine)
+
   if stateMachine == gameStates[2] then
       
     if self.isPlayer then

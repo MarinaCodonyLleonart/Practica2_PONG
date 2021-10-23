@@ -3,22 +3,18 @@ CData = CData or require("data")
 
 CScore = Object:extend()
 
-local d = CData()
 
-local font
-local playerPoints, cpuPoints 
+function CScore:new(x, y, w, h)
 
-function CScore:new(x, y, size, w, h)
---font = love.graphics.newFont( "pong.ttf", 80, "normal", love.graphics.getDPIScale(0))
-font = love.graphics.newFont( "Resources/Poppins-Bold.ttf", size, "normal", love.graphics.getDPIScale(0))
-playerPoints, cpuPoints = 0, 0  
+winner = "player"
+self.playerPoints, self.cpuPoints = 0, 0  
 
 self.x = x
 self.y = y
 
 self.h = h
 self.w = w
---{red, green, blue, alpha}
+
 self.colorPlayer= {50,50,100,100}
 self.colorCpu= {100,50,50,100}
 
@@ -26,26 +22,41 @@ end
 
 function CScore:update(dt, ball)
   
-  playerPoints = ball.bplayerPoints
-  cpuPoints = ball.bcpuPoints
+  self.playerPoints = ball.bplayerPoints
+  self.cpuPoints = 10 + ball.bcpuPoints
+  
+  if self.playerPoints>=11 or self.cpuPoints>=11 then
+    stateMachine = gameStates[4]
+    
+    if self.playerPoints>self.cpuPoints then
+      winner = "player 1"
+    else
+      winner = "player 2"
+    end
+    
+  end
   
 end
 
 function CScore:draw(isPlayer)
   
   if isPlayer then
-    local ox = font:getWidth( playerPoints )/2
-    local oy = font:getHeight( playerPoints )/2
+    local ox = font_score:getWidth( self.playerPoints )/2
+    local oy = font_score:getHeight( self.playerPoints )/2
+    
     love.graphics.setColor(200, 0, 0, 255)--red tomato
-    love.graphics.print(playerPoints, font, self.x, self.y, 0, 1, 1, ox, oy, 0, 0 )
+    love.graphics.print(self.playerPoints, font_score, self.x, self.y, 0, 1, 1, ox, oy, 0, 0 )
     love.graphics.reset( )
+    
   else
-    local ox = font:getWidth( cpuPoints )/2
-    local oy = font:getHeight( cpuPoints )/2
+    local ox = font_score:getWidth( self.cpuPoints )/2
+    local oy = font_score:getHeight( self.cpuPoints )/2
     love.graphics.setColor(0, 0, 255, 255)
-    love.graphics.print(cpuPoints, font, self.x, self.y, 0, 1, 1, ox, oy, 0, 0 )
+    love.graphics.print(self.cpuPoints, font_score, self.x, self.y, 0, 1, 1, ox, oy, 0, 0 )
     love.graphics.reset( )
+    
   end
 end
+
 
 return CScore

@@ -8,7 +8,6 @@ local buttonList = {}
 
 
 function Menu:new()
-  local d = CData()
   
   --panel manager
   currentPanel = menuPanels[1]
@@ -18,10 +17,12 @@ function Menu:new()
   table.insert(buttonList, play )
   local exit = CButton(0+10, h-70, 120, 60, "Exit")
   table.insert(buttonList, exit)
-  local singleplayer = CButton(w/2-290/2, h/4+60, 290, 60, "Singleplayer") 
+  local singleplayer = CButton(0+60, h/2-60, 290, 60, "Singleplayer") 
   table.insert(buttonList, singleplayer )
-  local multiplayer = CButton(w/2-290/2, h/2+50, 290, 60, "Multiplayer") 
+  local multiplayer = CButton(w-330, h/2-60, 290, 60, "Multiplayer") 
   table.insert(buttonList, multiplayer )
+  local restart = CButton(w/2-290/2, h-120, 290, 60, "Restart") 
+  table.insert(buttonList, restart )
   
 end
 
@@ -45,14 +46,19 @@ function Menu:update(dt)
           currentPanel = menuPanels[2]
           break
           
+         elseif b.txt == "Singleplayer" then
+          stateMachine = "single"
+          break
+        
         elseif b.txt =="Multiplayer" then
           stateMachine = "multi"
           break
-
-        elseif b.txt == "Singleplayer" then
-          stateMachine = "single"
+          
+        elseif b.txt == "Restart" then
+          stateMachine = gameStates[5]
           break
         end
+        
         
       end
     end
@@ -61,6 +67,7 @@ function Menu:update(dt)
 end
 
 function Menu:draw()
+  
   if currentPanel == menuPanels[1] then
     -- BACKGROUND
     love.graphics.draw(imageMenuBackground, 0, 0, 0, 1, 1, 0, 0, 0, 0 )
@@ -78,13 +85,23 @@ function Menu:draw()
     --print("panel 2 active")
     -- BACKGROUND
     love.graphics.draw(imageBackground, 0, 0, 0, 1, 1, 0, 0, 0, 0 )
-    
-    --TEXT
-    love.graphics.print("Choose your game mode", font_subheading, 100,100, 1, 1, 100, 100, 0, 0 )
-    
+  
+     --TEXT
+    --no entenc lo del color, si vols canviar-ho a un altre que no sigui blanc perk es vegi millor tot teu
+    --love.graphics.setColor(69, 178, 87, 100)
+    love.graphics.print( "Choose your game mode", font_subheading, w/2-175, h/3-50, 0, 1, 1, 0, 0, 0, 0 )
+    love.graphics.reset()
+ 
     --BUTTONS
     buttonList[3]:draw()
     buttonList[4]:draw()
+    
+  elseif currentPanel == menuPanels[3] then
+    love.graphics.draw(imageBackground, 0, 0, 0, 1, 1, 0, 0, 0, 0 )
+    buttonList[5]:draw()
+    
+    love.graphics.print(winner.." won !!!", font_heading, w/2-160, h/2-60, 0, 1, 1, 0, 0, 0, 0 )
+    
   end
   
 end

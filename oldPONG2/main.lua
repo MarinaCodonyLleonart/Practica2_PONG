@@ -11,6 +11,7 @@ function love.load(arg)
   if arg[#arg] == "-debug" then require("mobdebug").start() end -- Enable the debugging with ZeroBrane Studio
 
   stateMachine = gameStates[1]
+  --gameMode_isMultiplayer = false
   
   --CBall:new(x, y, angle, speed, radius, accel, h, w)
   ball = CBall(ballX, ballY, ballAngle, ballBaseSpeed, ballRadius, ballAcc, h, w, animatedFlowerBall )
@@ -20,8 +21,8 @@ function love.load(arg)
   playerPaddle = CPaddle(playerX, playerY, paddleSpeed, paddleWidth, paddleHeight, true, imageRed)
   
   --CScore:new(x, y, size, w, h)
-  scorePlayer = CScore(w/4, h/12, 80, w, h)
-  scoreCpu = CScore(w/4*3, h/12, 80, w, h)
+  scorePlayer = CScore(w/4, h/12, w, h)
+  scoreCpu = CScore(w/4*3, h/12, w, h)
 
   --CStartMenu
   sMenu = CMenu()
@@ -32,7 +33,7 @@ end
 function love.update(dt)
   --print(stateMachine)
   if stateMachine == gameStates[1] then
-    sMenu:update(dt, stateMachine)
+    sMenu:update(dt)
     
   elseif stateMachine == gameStates[2] then
     ball:update(dt, playerPaddle, cpuPaddle, scoreCpu, scorePlayer)
@@ -52,16 +53,16 @@ function love.update(dt)
     scoreCpu:update(dt, ball)
     scorePlayer:update(dt, ball)
 
-  elseif StateMachine == gameStates[4] then
+  elseif stateMachine == gameStates[4] then
     --gameover
-  elseif StateMachine == gameStates[5] then
+    currentPanel = menuPanels[3]
+    sMenu:update(dt)
+
+  elseif stateMachine == gameStates[5] then
     love.event.quit( "restart" )
-  elseif StateMachine == gameStates[6] then
-    --love.event.quit( exitstatus )
-    --love.quit()
-    --os.exit()
-    --love.event.clear()
-    window.close()
+    
+  elseif stateMachine == gameStates[6] then
+    
     love.event.push("quit", exitstatus)
     
   end
@@ -93,7 +94,6 @@ function love.draw()
     love.graphics.draw(imageBackground, 0, 0, 0, 1, 1, 0, 0, 0, 0 )
     love.graphics.line(w/2, 0, w/2,h)
     
-    ---
     ball:draw()
     
     cpuPaddle:draw()
@@ -102,6 +102,9 @@ function love.draw()
     --CScore:draw(isPlayer)
     scoreCpu:draw(false)
     scorePlayer:draw(true)
+    
+  elseif stateMachine == gameStates[4] then
+    sMenu:draw()
   end
   
 end
