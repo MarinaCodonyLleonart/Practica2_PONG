@@ -21,16 +21,12 @@ function CBall:new(x, y, angle, speed, radius, accel, hScreen, wScreen, image)
   self.bcpuPoints, self.bplayerPoints = 0,0 --maybe innecesary
   
   self.image = image --ANIMACIO: Posa sprite aquí
+  --self.numFrames = 4
   self.height = self.image:getHeight()
-  self.width  = self.image:getWidth()
+  self.width  = self.image:getWidth() --/numFrames
   
-  --[[ maybe include in dataS
-  self.numFrames
-  self.actFrame
-  self.fr 
-  ]]--
-  --ANIMACIONS
-  self.sprite =CAnimatedSprite(self.image, numframes)
+  --ANIMACIONS: descomentar quan posis sprite
+  --self.sprite =CAnimatedSprite(self.image, numFrames)
   
 end
 
@@ -38,6 +34,9 @@ function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
   --Movement
   self.x = self.x + self.speed * dt * math.cos(self.angle)
   self.y = self.y + self.speed * dt * math.sin(self.angle)
+  
+  --ANIMACIONS: descomentar quan posis sprite
+  --self.sprite:update(dt)
   
   --BallCollisionsScreen(h)
   if self.y-self.radius-20 <= 0 or self.y+self.radius+20 >= self.h then
@@ -77,6 +76,7 @@ function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
     self.x, self.y = self.w/2, self.h/2
     self.speed = self.baseSpeed
   end
+  
 end
 
 function CBall:draw()
@@ -86,7 +86,12 @@ function CBall:draw()
   local ox = self.width/2
   local oy = self.height/2
   --love.graphics.draw( drawable, x, y, r, sx, sy, ox, oy, kx, ky )
+  
+   --ANIMACIONS
   love.graphics.draw(self.image, self.x, self.y, self.angle, sx, sy, ox, oy, 0, 0 )
+  --substituir self.image per self.sprite.getActFrameQuad()
+  
+  
 end
 -----METHODS OF BALL UPDATE
 --function ResetBall()--Load the ball in the init point and v

@@ -6,6 +6,7 @@ animatedSprite = Object:extend()
 function AnimatedSprite:new(image,nFrames)
   self.numFrames = nFrames  
   self.frames = {}
+  self.actFrameCount = 0
   
   local x0 = 0
   local y0 = 0
@@ -18,8 +19,24 @@ function AnimatedSprite:new(image,nFrames)
   
 end
 
-function AnimatedSprite:getQuadsTable()
-  return self.frames 
+function AnimatedSprite:update(dt)
+  if self.actFrameCount <= numFrames then
+    self.actFrameCount = self.actFrame + animationFr*dt
+  else
+    self.actFrame =1
+  end
+  
+end
+
+function AnimatedSprite.getActFrameQuad
+  actFrameQuad = self.frames[self.actFrameCount]
+  return actFrameQuad
 end
   
+
+function AnimatedSpritegetQuadsTable()
+  return self.frames 
+end
+
+
   
