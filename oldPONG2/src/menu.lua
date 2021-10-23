@@ -25,7 +25,7 @@ function Menu:new()
   
 end
 
-function Menu:update(dt, gameState)
+function Menu:update(dt)
   --add response animation for hovering
   x = love.mouse.getX()
   y = love.mouse.getY()
@@ -38,12 +38,10 @@ function Menu:update(dt, gameState)
       if x> b.X and x<b.X+b.W and y>b.Y and y<b.Y+b.H then
         
         if b.txt == "Exit" then
-          stateMachine = gameState[6]
+          stateMachine = gameStates[6]
           break
           
         elseif b.txt =="Play" then
-          --button animation
-          print("panel 2 toggled")
           currentPanel = menuPanels[2]
           break
           
@@ -63,9 +61,8 @@ function Menu:update(dt, gameState)
 end
 
 function Menu:draw()
-  print(currentPanel)
   if currentPanel == menuPanels[1] then
-    -- BACKGORUND
+    -- BACKGROUND
     love.graphics.draw(imageMenuBackground, 0, 0, 0, 1, 1, 0, 0, 0, 0 )
     
     --TEXT
@@ -78,8 +75,8 @@ function Menu:draw()
     buttonList[2]:draw()
     
   elseif currentPanel == menuPanels[2] then
-    print("panel 2 active")
-    -- BACKGORUND
+    --print("panel 2 active")
+    -- BACKGROUND
     love.graphics.draw(imageBackground, 0, 0, 0, 1, 1, 0, 0, 0, 0 )
     
     --TEXT

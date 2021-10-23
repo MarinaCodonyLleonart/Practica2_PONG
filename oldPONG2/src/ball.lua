@@ -38,7 +38,7 @@ function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
   --Animations
   sprite:update(dt)
   
-  --BallCollisionsScreen(
+  --BallCollisionsTopScreen
   if self.y-self.radius <= 0 or self.y+self.radius >= self.h then
     s.ballcollision()
     self.angle = -(-self.angle - math.pi/4) + math.pi/4
@@ -52,7 +52,7 @@ function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
       self.speed = self.speed + self.speed * self.acceleration
   end
   
-   --Lateral sides of the screen --POINTS
+   --BallCollisionsPointsScreen 
   if self.x-self.radius < 0 then 
     s.scoring()
     self.bcpuPoints = self.bcpuPoints + 1 --points

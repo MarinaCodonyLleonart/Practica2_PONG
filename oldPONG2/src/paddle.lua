@@ -20,24 +20,39 @@ function CPaddle:new(x, y, speed, width, height, isPlayer, image)
 end
 
 function CPaddle:update(dt, ball)
-  
-  if self.isPlayer then
-  --Keyboard__PlayerPaddle
-    if love.keyboard.isDown("up") then
-      self.y = self.y - self.speed * dt
-    elseif love.keyboard.isDown("down") then
-      self.y = self.y + self.speed * dt
+  print(stateMachine)
+  if stateMachine == gameStates[2] then
+      
+    if self.isPlayer then
+    --Keyboard__PlayerPaddle
+      if love.keyboard.isDown("up") then
+        self.y = self.y - self.speed * dt
+      elseif love.keyboard.isDown("down") then
+        self.y = self.y + self.speed * dt
+      end
+      
+    else
+    --CpuPaddleMovement
+      local forward = -(self.y - ball.y) / math.sqrt(ball.x^2 + ball.y^2)
+      self.y = self.y + self.speed * dt * forward
     end
     
-  else
-  --CpuPaddleMovement
-    local forward = -(self.y - ball.y) / math.sqrt(ball.x^2 + ball.y^2)
-    self.y = self.y + self.speed * dt * forward
-    --KeyboardControlTestingCPU
-    if love.keyboard.isDown("w") then
-    self.y = self.y - self.speed*dt
-    elseif love.keyboard.isDown("s") then
-    self.y = self.y + self.speed*dt
+  elseif stateMachine == gameStates[3] then
+    if self.isPlayer then
+    --Keyboard__PlayerPaddle
+      if love.keyboard.isDown("w") then
+        self.y = self.y - self.speed * dt
+      elseif love.keyboard.isDown("s") then
+        self.y = self.y + self.speed * dt
+      end
+      
+    else
+    --Keyboard__CpuPaddle
+      if love.keyboard.isDown("up") then
+      self.y = self.y - self.speed*dt
+      elseif love.keyboard.isDown("down") then
+      self.y = self.y + self.speed*dt
+      end
     end
   end
   
