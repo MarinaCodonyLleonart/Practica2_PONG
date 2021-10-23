@@ -19,7 +19,6 @@ function CBall:new(x, y, angle, speed, radius, accel, hScreen, wScreen, bimage)
   self.h = hScreen
   self.w = wScreen
   self.bcpuPoints, self.bplayerPoints = 0,0 --maybe innecesary
-  --animatedFlowerBall = love.graphics.newImage ("Resources/FlowerBallAnim.png")
 
   --ANIMACIÓ
   self.image = bimage
@@ -28,7 +27,6 @@ function CBall:new(x, y, angle, speed, radius, accel, hScreen, wScreen, bimage)
   self.width  = self.image:getWidth()/self.numFrames
   
   sprite = CAnimatedSprite(self.image, self.numFrames)
-  --self.quadsTable = sprite:getQuadsTable()
   
 end
 
@@ -37,41 +35,32 @@ function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
   self.x = self.x + self.speed * dt * math.cos(self.angle)
   self.y = self.y + self.speed * dt * math.sin(self.angle)
   
-  --ANIMACIONS: descomentar quan posis sprite
+  --Animations
   sprite:update(dt)
   
-  --BallCollisionsScreen(h)
-  if self.y-self.radius-20 <= 0 or self.y+self.radius+20 >= self.h then
+  --BallCollisionsScreen(
+  if self.y-self.radius <= 0 or self.y+self.radius >= self.h then
     s.ballcollision()
     self.angle = -(-self.angle - math.pi/4) + math.pi/4
   end
   
-  --BallCollisionsPaddle(player, cpu)
-  --[[
-  if (self.y > player.y and self.y < player.y + player.height and self.x < player.x + player.width)
-    or (self.y > cpu.y and self.y < cpu.y + cpu.height and self.x > cpu.x-cpu.width) then
-    self.angle = -(self.angle - math.pi/2) + math.pi/2
-    self.speed = self.speed + self.speed * self.acceleration
-  end
-  ]]--
-  
-  --Radi colisió arreglat
-  if (self.y > (player.y-self.radius-20) and self.y < (player.y + player.height +self.radius+20) and self.x < (player.x + player.width - self.radius-20))
-    or (self.y > (cpu.y-self.radius-20) and self.y < cpu.y + cpu.height-self.radius-20) and self.x > (cpu.x-cpu.width+self.radius+20) then
+  --BallCollisionsPaddle
+  if (self.y > (player.y-self.radius-190) and self.y < (player.y + player.height +self.radius+20) and self.x < (player.x + player.width - self.radius))
+    or (self.y > (cpu.y-self.radius-100) and self.y < cpu.y + cpu.height-self.radius-20) and self.x > (cpu.x-cpu.width+self.radius) then
       s.ballcollision()
       self.angle = -(self.angle - math.pi/2) + math.pi/2
       self.speed = self.speed + self.speed * self.acceleration
   end
   
    --Lateral sides of the screen --POINTS
-  if self.x-self.radius-20 < 0 then 
+  if self.x-self.radius < 0 then 
     s.scoring()
     self.bcpuPoints = self.bcpuPoints + 1 --points
     --ResetBall()
     self.x, self.y = self.w/2, self.h/2
     self.speed = self.baseSpeed
     
-  elseif self.x+self.radius+20> self.w then 
+  elseif self.x+self.radius> self.w then 
     s.scoring()
     self.bplayerPoints = self.bplayerPoints + 1 --points
     --ResetBall()

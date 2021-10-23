@@ -16,7 +16,7 @@ function Cdata:new()
   w, h = love.graphics.getDimensions() -- Get the screen width and height
 
   ballX, ballY = w/2, h/2
-  ballRadius = 10
+  ballRadius = 40 --10
   ballAngle = math.pi/4
   ballBaseSpeed = 150
   ballAcc = 0.1
