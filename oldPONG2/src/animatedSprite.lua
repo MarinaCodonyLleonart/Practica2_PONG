@@ -7,10 +7,11 @@ function AnimatedSprite:new(image,nFrames)
   self.numFrames = nFrames  
   self.frames = {}
   self.actFrameCount = 0
+  self.image = image
   
   local x0 = 0
   local y0 = 0
-  local width = self.imae:getWidth()
+  local width = self.image:getWidth()
   local height = self.image:getHeight()
   
   for i=1, numFrames do
@@ -28,7 +29,7 @@ function AnimatedSprite:update(dt)
   
 end
 
-function AnimatedSprite.getActFrameQuad
+function AnimatedSprite.getActFrameQuad()
   actFrameQuad = self.frames[self.actFrameCount]
   return actFrameQuad
 end

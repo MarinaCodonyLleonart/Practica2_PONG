@@ -4,7 +4,6 @@ local CScore = CScore or require("src/score")
 local CStartMenu = CStartMenu or require("src/startMenu")
 local CData = CData or require("data")
 
-
 local d = CData()
 
 --local w, h 

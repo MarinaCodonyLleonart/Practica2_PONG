@@ -11,6 +11,7 @@ function Cdata:new()
   imageButton = love.graphics.newImage ("Resources/button.png")
   imageButtonPressed = love.graphics.newImage ("Resources/buttonPressed.png")
 
+  animatedFlowerBall = love.graphics.newImage ("Resources/FlowerBallAnim.png")
   
   w, h = love.graphics.getDimensions() -- Get the screen width and height
 

@@ -1,7 +1,7 @@
 Object = Object or require("lib/classic")
 CData = CData or require("data")
 CSound = CSound or require("sound")
-CAnimatedSprite = CAnimatedSprite or require("animatedSprite")
+CAnimatedSprite = CAnimatedSprite or require("src/animatedSprite")
 
 CBall = Object:extend()
 
@@ -19,14 +19,15 @@ function CBall:new(x, y, angle, speed, radius, accel, hScreen, wScreen, image)
   self.h = hScreen
   self.w = wScreen
   self.bcpuPoints, self.bplayerPoints = 0,0 --maybe innecesary
-  
-  self.image = image --ANIMACIO: Posa sprite aquí
-  --self.numFrames = 4
+  animatedFlowerBall = love.graphics.newImage ("Resources/FlowerBallAnim.png")
+
+  self.image = animatedFlowerBall --ANIMACIO: Posa sprite aquí
+  self.numFrames = 3 --suposo que sha d descomentar
   self.height = self.image:getHeight()
   self.width  = self.image:getWidth() --/numFrames
   
   --ANIMACIONS: descomentar quan posis sprite
-  --self.sprite =CAnimatedSprite(self.image, numFrames)
+  self.sprite =CAnimatedSprite(self.image, numFrames)
   
 end
 
@@ -36,7 +37,7 @@ function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
   self.y = self.y + self.speed * dt * math.sin(self.angle)
   
   --ANIMACIONS: descomentar quan posis sprite
-  --self.sprite:update(dt)
+  self.sprite:update(dt)
   
   --BallCollisionsScreen(h)
   if self.y-self.radius-20 <= 0 or self.y+self.radius+20 >= self.h then
@@ -88,9 +89,10 @@ function CBall:draw()
   --love.graphics.draw( drawable, x, y, r, sx, sy, ox, oy, kx, ky )
   
    --ANIMACIONS
-  love.graphics.draw(self.image, self.x, self.y, self.angle, sx, sy, ox, oy, 0, 0 )
+  --love.graphics.draw(self.image, self.x, self.y, self.angle, sx, sy, ox, oy, 0, 0 )
   --substituir self.image per self.sprite.getActFrameQuad()
-  
+  love.graphics.draw(self.sprite.getActFrameQuad(), self.x, self.y, self.angle, sx, sy, ox, oy, 0, 0 )
+
   
 end
 -----METHODS OF BALL UPDATE
