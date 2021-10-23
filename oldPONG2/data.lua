@@ -2,6 +2,13 @@ Object = Object or require ("lib/classic")
 local Cdata = Object:extend()
 
 function Cdata:new()
+  
+  gameStates = {"start_menu", "single", "multi", "game_over", "restart", "exit"}
+  menuPanels = {"home","mode_select"}
+  
+  gameTitle = "2021 Pong Game"
+  credits = "by Eli & Marina"
+
   --images
   imageBall = love.graphics.newImage ("Resources/flowerBall.png")
   imageBlue = love.graphics.newImage ("Resources/bluePaddle.png")
@@ -30,6 +37,11 @@ function Cdata:new()
   
   animationFr = 6
   
+  font_heading = love.graphics.newFont( "resources/pong.ttf", 50, "normal", love.graphics.getDPIScale(0) )
+  font_subheading = love.graphics.newFont( "resources/Poppins-Bold.ttf",25, "normal", love.graphics.getDPIScale(0) )
+  font_buttontxt = love.graphics.newFont( "resources/Poppins-Bold.ttf",30, "normal", love.graphics.getDPIScale(0) )
+  
+ 
 end
 
 return Cdata

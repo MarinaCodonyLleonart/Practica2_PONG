@@ -1,5 +1,6 @@
 Object = Object or require("lib/classic")
 AnimatedSprite = Object:extend()
+
 CData = CData or require("data")
 
 function AnimatedSprite:new(nimage,nFrames)
@@ -18,7 +19,6 @@ function AnimatedSprite:new(nimage,nFrames)
     self.frames[i] = love.graphics.newQuad( x0, y0, width/nFrames, height, width, height)
     x0 = x0+width/nFrames
   end
-  print(#self.frames)
   
 end
 
@@ -35,7 +35,6 @@ end
 function AnimatedSprite:draw(xx, yy, angle, sx, sy, ox, oy, kx, ky)
   actFrame = self.actFrameCount
   local nQuad = math.floor(actFrame)
-  print(nQuad)
   love.graphics.draw(self.image, self.frames[nQuad], xx, yy, angle, sx, sy, ox, oy, kx, ky)
   
 end
