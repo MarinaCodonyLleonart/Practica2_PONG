@@ -2,6 +2,11 @@ Object = Object or require("lib/classic")
 AnimatedSprite = Object:extend()
 CData = CData or require("data")
 
+--IN THE OTHER CLASS
+--self.numFrames = 3 
+--sprite = CAnimatedSprite(self.image, self.numFrames)
+--self.sprite:update(dt)
+--love.graphics.draw(self.sprite.getActFrameQuad(), self.x, self.y, self.angle, sx, sy, ox, oy, 0, 0 )
 
 function AnimatedSprite:new(nimage,nFrames)
   print("here")
