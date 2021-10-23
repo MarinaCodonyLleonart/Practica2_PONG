@@ -19,7 +19,7 @@ function CBall:new(x, y, angle, speed, radius, accel, hScreen, wScreen, image)
   self.h = hScreen
   self.w = wScreen
   self.bcpuPoints, self.bplayerPoints = 0,0 --maybe innecesary
-  animatedFlowerBall = love.graphics.newImage ("Resources/FlowerBallAnim.png")
+  --animatedFlowerBall = love.graphics.newImage ("Resources/FlowerBallAnim.png")
 
   self.image = animatedFlowerBall --ANIMACIO: Posa sprite aquí
   self.numFrames = 3 --suposo que sha d descomentar
@@ -27,7 +27,7 @@ function CBall:new(x, y, angle, speed, radius, accel, hScreen, wScreen, image)
   self.width  = self.image:getWidth() --/numFrames
   
   --ANIMACIONS: descomentar quan posis sprite
-  self.sprite =CAnimatedSprite(self.image, numFrames)
+  self.sprite = CAnimatedSprite(self.image, self.numFrames)
   
 end
 
