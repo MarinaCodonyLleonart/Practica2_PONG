@@ -28,7 +28,7 @@ function Cdata:new()
   paddleHeight = 100
   paddleSpeed = 300
   
-  animationFr = 12
+  animationFr = 6
   
 end
 
