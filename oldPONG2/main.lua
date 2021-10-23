@@ -13,7 +13,7 @@ function love.load(arg)
   stateMachine = "start_menu"
   
   --CBall:new(x, y, angle, speed, radius, accel, h, w)
-  ball = CBall(ballX, ballY, ballAngle, ballBaseSpeed, ballRadius, ballAcc, h, w, imageBall )
+  ball = CBall(ballX, ballY, ballAngle, ballBaseSpeed, ballRadius, ballAcc, h, w, animatedFlowerBall )
   
   --CPaddle:new(x, y, speed, width, height, isPlayer)
   cpuPaddle = CPaddle(cpuX, cpuY, paddleSpeed, paddleWidth,paddleHeight, false, imageBlue )
