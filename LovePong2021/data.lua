@@ -11,7 +11,7 @@ function Cdata:new()
   --Texts
   gameTitle = "2021 Pong Game"
   credits = "by Eli & Marina"
-  chooseGameMode = "Choose your game mode"
+  chooseGameMode = "Choose your game mode:"
   winTxt = " has won the match!!!"
   player1Name = "PLAYER 1"
   player2Name = "PLAYER 2"

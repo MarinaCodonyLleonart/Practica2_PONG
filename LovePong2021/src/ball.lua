@@ -57,8 +57,8 @@ function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
       self.speed = self.speed + self.speed * self.acceleration
   end
   
-  --BallCollisionsPointsScreen 
-  if self.x-self.radius < 0 then 
+  --BallCollisionsLateralsScreen 
+  if self.x-self.radius <= 0 then 
     s.scoring()
     self.bcpuPoints = self.bcpuPoints + 1 --points
     
@@ -66,7 +66,7 @@ function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
     self.x, self.y = self.w/2, self.h/2
     self.speed = self.baseSpeed
     
-  elseif self.x+self.radius> self.w then 
+  elseif self.x+self.radius >= self.w then 
     s.scoring()
     self.bplayerPoints = self.bplayerPoints + 1 --points
     

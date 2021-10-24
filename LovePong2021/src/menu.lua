@@ -79,7 +79,7 @@ function Menu:draw()
     local ox = font_subheading:getWidth(credits) / 2
     local oy = font_subheading:getHeight(credits) / 2
     
-    love.graphics.setColor(0, 0.7, 0.3, 0.5)
+    love.graphics.setColor(0, 0.7, 0.3, 0.3)
     love.graphics.print(credits, font_subheading, w-ox-20, h-oy-10, 0, 1, 1, ox, oy, 0, 0 ) 
     love.graphics.reset( )
 
