@@ -12,10 +12,10 @@ function Menu:new()
   --panel manager
   currentPanel = menuPanels[1]
 
-  --load button
+  --load button --Button:new(x, y, w, h, txt, rot, sx, sy )
   local play = CButton(w/2-290/2, h/3*2-60/2, 290, 60, "Play") 
   table.insert(buttonList, play )
-  local exit = CButton(0+10, h-70, 120, 60, "Exit")
+  local exit = CButton(10, h-70, 120, 60, "Exit", 7.6*math.pi/4, 0.9, 0.9)
   table.insert(buttonList, exit)
   local singleplayer = CButton(0+60, h/2-60, 290, 60, "Single") 
   table.insert(buttonList, singleplayer )

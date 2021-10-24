@@ -20,7 +20,7 @@ function CBall:new(x, y, angle, speed, radius, accel, hScreen, wScreen, bimage)
   self.acceleration = accel
   self.h = hScreen
   self.w = wScreen
-  self.bcpuPoints, self.bplayerPoints = 0,0 --maybe innecesary
+  self.bcpuPoints, self.bplayerPoints = 0,0
   --ANIMACIÓ
   self.image = bimage
   self.numFrames = 3 
@@ -57,10 +57,11 @@ function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
       self.speed = self.speed + self.speed * self.acceleration
   end
   
-   --BallCollisionsPointsScreen 
+  --BallCollisionsPointsScreen 
   if self.x-self.radius < 0 then 
     s.scoring()
     self.bcpuPoints = self.bcpuPoints + 1 --points
+    
     --ResetBall()
     self.x, self.y = self.w/2, self.h/2
     self.speed = self.baseSpeed
@@ -68,6 +69,7 @@ function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
   elseif self.x+self.radius> self.w then 
     s.scoring()
     self.bplayerPoints = self.bplayerPoints + 1 --points
+    
     --ResetBall()
     self.x, self.y = self.w/2, self.h/2
     self.speed = self.baseSpeed
