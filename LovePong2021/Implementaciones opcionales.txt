@@ -1,0 +1,17 @@
+Implementaciones opcionales de codigo:
+
+- 3 pantallas de menú (menú de inicio, menú de modo de juego y de final de partida). 
+  Éstos, disponen de botones interactuables tanto gráfica como mecánicamente.
+    - Se implementan dos botones que permiten salir del juego, así como reiniciar la ejecución al final de la partida.
+
+- Sprites personalizados para todos los elementos del juego, dibujados por Eli.
+
+- La clase animatedSprite que permite animar el sprite animado de la bola.
+
+- Procedimiento de rotación de la bola respecto la velocidad de la misma.
+
+- Incorporación de musica y sfx, así como una clase sound para gestionar el sonido.
+
+- Dos modos de juego (single y multi).
+    - En single se compite contra la Cpu. Gana el primero en llegar a 11 puntos.
+    - En multi el jugador 1 controla la paddle con WASD, y el jugador 2 con arrowkeys. Gana el primero en llegar a 11 puntos.
