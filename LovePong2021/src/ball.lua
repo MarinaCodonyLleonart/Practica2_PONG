@@ -16,11 +16,12 @@ function CBall:new(x, y, angle, speed, radius, accel, hScreen, wScreen, bimage)
   self.rot = angle
   self.speed = speed
   self.baseSpeed = speed
-  self.radius = radius --should be diameter of sprite/2
+  self.radius = radius
   self.acceleration = accel
   self.h = hScreen
   self.w = wScreen
   self.bcpuPoints, self.bplayerPoints = 0,0
+  
   --ANIMACIÓ
   self.image = bimage
   self.numFrames = 3 
@@ -62,7 +63,7 @@ function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
     s.scoring()
     self.bcpuPoints = self.bcpuPoints + 1 --points
     
-    --ResetBall()
+    --ResetBallSpeed
     self.x, self.y = self.w/2, self.h/2
     self.speed = self.baseSpeed
     
@@ -70,7 +71,7 @@ function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
     s.scoring()
     self.bplayerPoints = self.bplayerPoints + 1 --points
     
-    --ResetBall()
+    --ResetBallSpeed
     self.x, self.y = self.w/2, self.h/2
     self.speed = self.baseSpeed
   end
@@ -78,43 +79,14 @@ function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
 end
 
 function CBall:draw()
-  --love.graphics.circle("fill", self.x, self.y, self.radius)
   local sx = 0.2
   local sy = 0.2
   local ox = self.width/2
   local oy = self.height/2
   
-  --love.graphics.draw( drawable, x, y, r, sx, sy, ox, oy, kx, ky )
-  
    --ANIMACIONS
-  --love.graphics.draw(self.image, self.x, self.y, self.angle, sx, sy, ox, oy, 0, 0 )
-  --substituir self.image per self.sprite.getActFrameQuad()
-  --local actSprite = sprite.getActFrameQuad()
-  --local quad = sprite:getActFrame()
   sprite:draw(self.x, self.y, self.rot, sx, sy, ox, oy, 0, 0)
-  --love.graphics.draw(self.image, self.quadsTable[quad], self.x, self.y, self.angle, sx, sy, ox, oy, 0, 0)
-  --love.graphics.draw(quad, self.x, self.y, self.angle, sx, sy, ox, oy, 0, 0 )
-
   
 end
------METHODS OF BALL UPDATE
---function ResetBall()--Load the ball in the init point and v
---  self.x, self.y = self.w/2, self.h/2
---  self.speed = self.baseSpeed 
---end
---
---function BallCollisionsPaddle(player, cpu)
---if (self.y > player.y and self.y < player.y + player.height and self.x < player + player.width)
---    or (self.y > cpu.y and self.y < cpu.y + cpu.height and self.x > cpu.x-cpu.width) then
---    self.angle = -(self.angle - math.pi/2) + math.pi/2
---    self.speed = self.speed + self.speed * self.acceleration
---  end
---end
---
---function BallCollisionsScreen(h)
---  if self.y<0 or self.y>self.h then
---    self.angle = -(-self.angle - math.pi/4) + math.pi/4
---  end
---end
 
 return CBall

@@ -18,6 +18,7 @@ function AnimatedSprite:new(nimage,nFrames)
   for i=1, self.numFrames do
     self.frames[i] = love.graphics.newQuad( x0, y0, width/nFrames, height, width, height)
     x0 = x0+width/nFrames
+    
   end
   
 end
@@ -39,16 +40,5 @@ function AnimatedSprite:draw(xx, yy, angle, sx, sy, ox, oy, kx, ky)
   
 end
 
---[[
-function AnimatedSprite:getActFrame()
-  return self.actFrameCount
-  
-end
-  
-
-function AnimatedSprite:getQuadsTable()
-  return self.frames 
-end
-]]--
 
 return AnimatedSprite
