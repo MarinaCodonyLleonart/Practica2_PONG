@@ -20,7 +20,7 @@ function love.load(arg)
   ballRadius = 10
   
   -- TODO 5: Load the font to use in the game and set it
-  font = love.graphics.newFont( "pong.ttf", 80, "normal",     love.graphics.getDPIScale(0) )
+  font = love.graphics.newFont( "pong.ttf", 80, "normal", love.graphics.getDPIScale(0) )
 
 -- TODO 6: Initialize the position of the ball at the center of the screen
   
@@ -141,8 +141,6 @@ end ]]--
 
 --TODO 19
 function BallCollisionsPaddle()
-  --if playerX+paddleWidth > ballX-ballRadius or cpuX < ballX+ballRadius then
-  --if isBallCollisionsPaddleCpu() or isBallCollisionsPaddlePlayer() then
   if (ballY>playerY and ballY<playerY+paddleHeight and ballX<playerX+paddleWidth)
     or (ballY>cpuY and ballY<cpuY+paddleHeight and ballX>cpuX-paddleWidth) then
     ballAngle = -(ballAngle - math.pi/2) + math.pi/2
@@ -154,17 +152,11 @@ end
 function BallCollisionsScreen()
   if ballY<0 or ballY>h then
     ballAngle = -(-ballAngle - math.pi/4) + math.pi/4
-   -- ballSpeed = ballSpeed + ballSpeed*paddleAcc--ELIMINAR
   end
 end
 
 function CpuPaddleMovement(dt)
-  --distanceY = cpuY-ballY
   forward = -(cpuY-ballY)/math.sqrt(ballX^2+ballY^2)
-  --cpuY = ballY-paddleHeight/2
-  --cpuY = cpuY - distanceY*dt*paddleSpeed 
-  --cpuY = cpuY - distanceY/(dt*paddleSpeed) 
-  --cpuY = cpuY + paddleSpeed*dt*forward
   cpuY = cpuY + paddleSpeed*dt*forward
 end
 
