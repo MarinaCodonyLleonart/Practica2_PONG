@@ -15,7 +15,7 @@ self.y = y
 self.h = h
 self.w = w
 
-self.colorPlayer= {50,50,100,100}
+self.colorPlayer= {200, 0, 0, 255}
 self.colorCpu= {100,50,50,100}
 
 end
@@ -23,15 +23,15 @@ end
 function CScore:update(dt, ball)
   
   self.playerPoints = ball.bplayerPoints
-  self.cpuPoints = 10 + ball.bcpuPoints
-  
-  if self.playerPoints>=11 or self.cpuPoints>=11 then
+  self.cpuPoints = ball.bcpuPoints
+
+  if self.playerPoints>=10 or self.cpuPoints>=10 then
     stateMachine = gameStates[4]
     
     if self.playerPoints>self.cpuPoints then
-      winner = "player 1"
+      winner = player1Name
     else
-      winner = "player 2"
+      winner = player2Name
     end
     
   end
@@ -44,14 +44,14 @@ function CScore:draw(isPlayer)
     local ox = font_score:getWidth( self.playerPoints )/2
     local oy = font_score:getHeight( self.playerPoints )/2
     
-    love.graphics.setColor(200, 0, 0, 255)--red tomato
+    love.graphics.setColor(0.9, 0, 0, 1)
     love.graphics.print(self.playerPoints, font_score, self.x, self.y, 0, 1, 1, ox, oy, 0, 0 )
     love.graphics.reset( )
     
   else
     local ox = font_score:getWidth( self.cpuPoints )/2
     local oy = font_score:getHeight( self.cpuPoints )/2
-    love.graphics.setColor(0, 0, 255, 255)
+    love.graphics.setColor(0,0.8,0.9, 1)
     love.graphics.print(self.cpuPoints, font_score, self.x, self.y, 0, 1, 1, ox, oy, 0, 0 )
     love.graphics.reset( )
     

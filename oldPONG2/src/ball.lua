@@ -11,7 +11,9 @@ local s = CSound()
 function CBall:new(x, y, angle, speed, radius, accel, hScreen, wScreen, bimage)
   self.x = x
   self.y = y
+  self.beforeX = x
   self.angle = angle
+  self.rot = angle
   self.speed = speed
   self.baseSpeed = speed
   self.radius = radius --should be diameter of sprite/2
@@ -19,7 +21,6 @@ function CBall:new(x, y, angle, speed, radius, accel, hScreen, wScreen, bimage)
   self.h = hScreen
   self.w = wScreen
   self.bcpuPoints, self.bplayerPoints = 0,0 --maybe innecesary
-
   --ANIMACIÓ
   self.image = bimage
   self.numFrames = 3 
@@ -32,9 +33,13 @@ end
 
 function CBall:update(dt, player, cpu, scoreCpu, scorePlayer)
   --Movement
+  self.beforeX = x
   self.x = self.x + self.speed * dt * math.cos(self.angle)
   self.y = self.y + self.speed * dt * math.sin(self.angle)
   
+  --Rotation sprite
+  if self.x <= self.beforeX then self.rot = self.rot - self.speed*dt/200
+  else self.rot = self.rot + self.speed/200*dt end
   --Animations
   sprite:update(dt)
   
@@ -76,6 +81,7 @@ function CBall:draw()
   local sy = 0.2
   local ox = self.width/2
   local oy = self.height/2
+  
   --love.graphics.draw( drawable, x, y, r, sx, sy, ox, oy, kx, ky )
   
    --ANIMACIONS
@@ -83,7 +89,7 @@ function CBall:draw()
   --substituir self.image per self.sprite.getActFrameQuad()
   --local actSprite = sprite.getActFrameQuad()
   --local quad = sprite:getActFrame()
-  sprite:draw(self.x, self.y, self.angle, sx, sy, ox, oy, 0, 0)
+  sprite:draw(self.x, self.y, self.rot, sx, sy, ox, oy, 0, 0)
   --love.graphics.draw(self.image, self.quadsTable[quad], self.x, self.y, self.angle, sx, sy, ox, oy, 0, 0)
   --love.graphics.draw(quad, self.x, self.y, self.angle, sx, sy, ox, oy, 0, 0 )
 

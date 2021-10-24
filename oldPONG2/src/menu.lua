@@ -17,9 +17,9 @@ function Menu:new()
   table.insert(buttonList, play )
   local exit = CButton(0+10, h-70, 120, 60, "Exit")
   table.insert(buttonList, exit)
-  local singleplayer = CButton(0+60, h/2-60, 290, 60, "Singleplayer") 
+  local singleplayer = CButton(0+60, h/2-60, 290, 60, "Single") 
   table.insert(buttonList, singleplayer )
-  local multiplayer = CButton(w-330, h/2-60, 290, 60, "Multiplayer") 
+  local multiplayer = CButton(w-330, h/2-60, 290, 60, "Multi") 
   table.insert(buttonList, multiplayer )
   local restart = CButton(w/2-290/2, h-120, 290, 60, "Restart") 
   table.insert(buttonList, restart )
@@ -27,6 +27,9 @@ function Menu:new()
 end
 
 function Menu:update(dt)
+  for _, b in pairs(buttonList) do
+    b:update()
+  end
   --add response animation for hovering
   x = love.mouse.getX()
   y = love.mouse.getY()
@@ -46,11 +49,11 @@ function Menu:update(dt)
           currentPanel = menuPanels[2]
           break
           
-         elseif b.txt == "Singleplayer" then
+         elseif b.txt == "Single" then
           stateMachine = "single"
           break
         
-        elseif b.txt =="Multiplayer" then
+        elseif b.txt =="Multi" then
           stateMachine = "multi"
           break
           
@@ -75,8 +78,11 @@ function Menu:draw()
     --TEXT
     local ox = font_subheading:getWidth(credits) / 2
     local oy = font_subheading:getHeight(credits) / 2
-    love.graphics.print(credits, font_subheading, w-ox-20, h-oy-10, 0, 1, 1, ox, oy, 0, 0 ) 
     
+    love.graphics.setColor(0, 0.7, 0.3, 0.5)
+    love.graphics.print(credits, font_subheading, w-ox-20, h-oy-10, 0, 1, 1, ox, oy, 0, 0 ) 
+    love.graphics.reset( )
+
     --BUTTONS
     buttonList[1]:draw()
     buttonList[2]:draw()
@@ -87,9 +93,11 @@ function Menu:draw()
     love.graphics.draw(imageBackground, 0, 0, 0, 1, 1, 0, 0, 0, 0 )
   
      --TEXT
+    local ox = font_midheading:getWidth(chooseGameMode) / 2
+    local oy = font_midheading:getHeight(chooseGameMode) / 2
     --no entenc lo del color, si vols canviar-ho a un altre que no sigui blanc perk es vegi millor tot teu
-    --love.graphics.setColor(69, 178, 87, 100)
-    love.graphics.print( "Choose your game mode", font_subheading, w/2-175, h/3-50, 0, 1, 1, 0, 0, 0, 0 )
+    love.graphics.setColor(0, 0, 0, 1)
+    love.graphics.print( chooseGameMode, font_midheading, w/2, h/4, 0, 1, 1, ox, oy, 0, 0 )
     love.graphics.reset()
  
     --BUTTONS
@@ -99,9 +107,21 @@ function Menu:draw()
   elseif currentPanel == menuPanels[3] then
     love.graphics.draw(imageBackground, 0, 0, 0, 1, 1, 0, 0, 0, 0 )
     buttonList[5]:draw()
-    
-    love.graphics.print(winner.." won !!!", font_heading, w/2-160, h/2-60, 0, 1, 1, 0, 0, 0, 0 )
-    
+    local ox = font_heading:getWidth(winTxt) / 2
+    local oy = font_heading:getHeight(winTxt) / 2
+    local oxWinner = font_superheading:getWidth(winner) / 2
+    local oyWinner = font_superheading:getHeight(winner) / 2
+    if winner == player1Name then
+      love.graphics.setColor(0.9, 0, 0, 1)
+    else
+      love.graphics.setColor(0,0.8,0.9, 1)
+    end      
+      
+      love.graphics.print(winner.."\n", font_superheading, w/2, h/3, 0, 1, 1, oxWinner, oyWinner, 0, 0 )
+
+      love.graphics.setColor(0, 0, 0, 1)
+      love.graphics.print("\n"..winTxt, font_heading, w/2, h/3, 0, 1, 1, ox, oy, 0, 0 )
+      love.graphics.reset()
   end
   
 end

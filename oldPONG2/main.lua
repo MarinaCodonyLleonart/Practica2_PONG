@@ -9,6 +9,9 @@ local d = CData()
 
 function love.load(arg)
   if arg[#arg] == "-debug" then require("mobdebug").start() end -- Enable the debugging with ZeroBrane Studio
+    music:setLooping(true)
+    music:play()
+    music:setVolume(0.1)
 
   stateMachine = gameStates[1]
   --gameMode_isMultiplayer = false
@@ -31,6 +34,7 @@ function love.load(arg)
 end
 
 function love.update(dt)
+  
   --print(stateMachine)
   if stateMachine == gameStates[1] then
     sMenu:update(dt)
