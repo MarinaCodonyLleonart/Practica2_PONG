@@ -25,7 +25,7 @@ function CScore:update(dt, ball)
   self.playerPoints = ball.bplayerPoints
   self.cpuPoints = ball.bcpuPoints
 
-  if self.playerPoints>=10 or self.cpuPoints>=10 then
+  if self.playerPoints>= winnerPoints or self.cpuPoints>= winnerPoints then
     stateMachine = gameStates[4]
     
     if self.playerPoints>self.cpuPoints then
@@ -56,6 +56,7 @@ function CScore:draw(isPlayer)
     love.graphics.reset( )
     
   end
+  
 end
 
 
